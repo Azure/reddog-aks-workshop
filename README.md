@@ -4,7 +4,7 @@
 
 Hands-on workshop to guide learning Azure Kubernetes Service (AKS) and deploy successful cloud native applications.
 
-This repository leverages the [reddog applicaton codebase](https://github.com/Azure/reddog-code). 
+This repository leverages the [reddog applicaton codebase](https://github.com/Azure/reddog-code) and is created by the Global Black Belt Team from Microsoft.
 
 ## Workshop Modules
 
@@ -26,6 +26,13 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Resource requirements (CPU, memory, etc.)
     * Secret/Config management
     * Health probes
+* GitOps
+* CI/CD 
+* Monitoring / Logging
+    * Azure Monitor
+    * Prometheus / Grafana
+    * Logging (eg - Fluentd)
+    * Tracing / App Insights   
 * App Scaling
     * HPA
     * KEDA
@@ -33,13 +40,6 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Bring images into ACR 
     * Security
 * Security Topics
-* GitOps
-* CI/CD
-* Monitoring / Logging
-    * Azure Monitor
-    * Prometheus / Grafana
-    * Logging (eg - Fluentd)
-    * Tracing / App Insights
 * Service Mesh
 * Storage
 
@@ -49,7 +49,9 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Access to Azure Cloud Shell
   * [https://shell.azure.com/](https://shell.azure.com/)
 
+## Getting Started
 
+Jump to the [index of modules](docs/toc.md) in the docs and get going.
 
 ## Contributing
 
