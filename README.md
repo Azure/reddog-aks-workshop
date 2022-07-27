@@ -8,13 +8,16 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 
 ## Workshop Modules
 
+* Environment Preparation
+    * Network Planning
+    * Identity Planning
 * AKS Cluster Design / Sizing
     * Cluster creation script 
     * Cluster and node autoscaler 
     * Node pool design, System node pools, taints
     * Upgrade planning
     * Azure Policy
-* Networking
+* Network Security
     * Egress lockdown
     * Ingress
     * Network Policy 
@@ -40,7 +43,11 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Service Mesh
 * Storage
 
+## Prerequisites
 
+* Access to an Azure Subscription
+* Access to Azure Cloud Shell
+  * [https://shell.azure.com/](https://shell.azure.com/)
 
 
 
