@@ -1,14 +1,47 @@
-# Project
+# Red Dog AKS Workshop
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+## Purpose of this repository
 
-As the maintainer of this project, please make a few updates:
+Hands-on workshop to guide learning Azure Kubernetes Service (AKS) and deploy successful cloud native applications.
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+This repository leverages the [reddog applicaton codebase](https://github.com/Azure/reddog-code). 
+
+## Workshop Modules
+
+* AKS Cluster Design / Sizing
+    * Cluster creation script 
+    * Cluster and node autoscaler 
+    * Node pool design, System node pools, taints
+    * Upgrade planning
+    * Azure Policy
+* Networking
+    * Egress lockdown
+    * Ingress
+    * Network Policy 
+* Application Manifests and Deployment
+    * Version control / Image tags
+    * Resource requirements (CPU, memory, etc.)
+    * Secret/Config management
+    * Health probes
+* App Scaling
+    * HPA
+    * KEDA
+* Image Management / Container Registry
+    * Bring images into ACR 
+    * Security
+* GitOps
+* CI/CD
+* Monitoring / Logging
+    * Azure Monitor
+    * Prometheus / Grafana
+    * Logging (eg - Fluentd)
+    * Tracing / App Insights
+* Service Mesh
+* Storage
+
+
+
+
 
 ## Contributing
 

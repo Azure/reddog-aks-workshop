@@ -348,3 +348,17 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Red Dog
+.DS_Store
+
+id_rsa
+id_rsa.pub
+
+ssh_keys/
+outputs/
+
+*.pfx
+
+config.json
+brian-notes.md

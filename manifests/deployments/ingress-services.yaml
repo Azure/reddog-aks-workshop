@@ -1,0 +1,70 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: order-service
+  namespace: reddog
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /product
+        pathType: Prefix
+        backend:
+          service:
+            name: order-service
+            port:
+              number: 8081
+      - path: /order
+        pathType: Prefix
+        backend:
+          service:
+            name: order-service
+            port:
+              number: 8081
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: accounting-service
+  namespace: reddog
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /ordermetrics
+        pathType: Prefix
+        backend:
+          service:
+            name: accounting-service
+            port:
+              number: 8083
+      - path: /corp
+        pathType: Prefix
+        backend:
+          service:
+            name: accounting-service
+            port:
+              number: 8083
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: make-line-service
+  namespace: reddog
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /orders
+        pathType: Prefix
+        backend:
+          service:
+            name: make-line-service
+            port:
+              number: 8082
