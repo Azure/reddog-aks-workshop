@@ -29,6 +29,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Image Management / Container Registry
     * Bring images into ACR 
     * Security
+* Security Topics
 * GitOps
 * CI/CD
 * Monitoring / Logging
