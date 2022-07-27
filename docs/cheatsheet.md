@@ -24,6 +24,13 @@ az network vnet subnet create \
 --name AzureFirewallSubnet \
 --address-prefix 10.140.1.0/24
 
+# Get a subnet resource ID
+az network vnet subnet show \
+-g $RG \
+--vnet-name $VNET_NAME  \
+--name aks \
+-o tsv \
+--query id
 ```
 
 
