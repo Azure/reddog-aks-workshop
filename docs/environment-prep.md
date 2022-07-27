@@ -4,7 +4,7 @@ Before creating an enterprise ready AKS cluster there are some foundations you m
 
 For the purposes of this workshop we will assume an environment more like the latter, where control of ingress and egress traffic to the Kubernetes cluster must by strictly controlled. We will streamline where we can to speed up the workshop, but will also share links to documentation that will dive much deeper in those areas.
 
-## Network Planning
+## Network Planning Requirements
 
 Azure Kubernetes Service ultimately runs on virtual machines, and those virtual machines live in a subnet within an [Azure Virtual Network](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview). For this workshop we'll assume the following network requirements:
 
@@ -12,8 +12,10 @@ Azure Kubernetes Service ultimately runs on virtual machines, and those virtual 
   * 10.140.0.0/16
 * The organization has limited available IP space, so you'll need to chose the AKS network plug-in that will use the fewest private IP addresses
 
-**Task:**
-Create the Resource Group and Azure Virtual Network and subnet that will be used for your AKS cluster.
+## Task:
+
+1. Create the Resource Group and Azure Virtual Network and subnet that will be used for your AKS cluster. 
+1. Get the resource ID for the subnet where the AKS cluster will be deployed
 
 > **Warning**
 > You will be asked to add other components to the network later in the workshop, so make sure ou leave address space.
