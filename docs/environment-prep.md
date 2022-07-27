@@ -12,15 +12,27 @@ Azure Kubernetes Service ultimately runs on virtual machines, and those virtual 
   * 10.140.0.0/16
 * The organization has limited available IP space, so you'll need to chose the AKS network plug-in that will use the fewest private IP addresses
 
+## Identity Planning Requirements
+
+Since Azure Kubernetes Service needs to interact with Azure to make infrastructure changes (ex. Attaching disks to nodes for persistent volumes and modifying the cluster load balancer as Kubernetes services of type 'LoadBalancer' are exposed), you need identities created with appropriate rights.
+
+* The cluster identity, used to make infrastructure changes should be a managed identity
+* The cluster identity should have 'Contributor' rights on the Resource Group
+* The identity used to pull images from the Azure Container Registry (i.e. the Kubelet identity) should be a managed identity
+
 ## Task:
 
 1. Create the Resource Group and Azure Virtual Network and subnet that will be used for your AKS cluster. 
-1. Get the resource ID for the subnet where the AKS cluster will be deployed
+   > **Warning**
+   > You will be asked to add other components to the network later in the workshop, so make sure ou leave address space.
 
-> **Warning**
-> You will be asked to add other components to the network later in the workshop, so make sure ou leave address space.
+2. Get the resource ID for the subnet where the AKS cluster will be deployed.
+3. Create a managed identity for the cluster in the cluster resource group, with the rights documented in the requirements.
+4. Create a managed identity to be used by Kubelet to pull images (**NOTE:** We'll set permissions for this identity in a later step.)
 
 **Useful links:**
 * [Azure CLI: Create VNet](https://docs.microsoft.com/en-us/cli/azure/network/vnet?view=azure-cli-latest#az-network-vnet-create)
 * [AKS Networking Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-network)
 * [Kubenet on AKS](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet)
+* [Azure Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
+* [Using Managed Identities with AKS](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)

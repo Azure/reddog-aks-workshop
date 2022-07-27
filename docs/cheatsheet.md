@@ -8,6 +8,9 @@ RG=RedDogAKSWorkshop
 LOC=eastus
 az group create -g $RG -l $LOC
 
+# Get the resource group id
+RG_ID=$(az group show -g $RG -o tsv --query id)
+
 # VNet/Subnet Creation
 VNET_NAME=reddog-vnet
 az network vnet create \
@@ -31,6 +34,24 @@ az network vnet subnet show \
 --name aks \
 -o tsv \
 --query id
+
+# Create a managed identity
+az identity create \
+--name clusteridentity \
+--resource-group $RG
+
+# Get Managed Identity Resource ID
+CLUSTER_IDENT_ID=$(az identity show \
+--name clusteridentity \
+-g $RG \
+-o tsv \
+--query principalId)
+
+# Grant the Managed Identity Contributor on the Resource Group
+az role assignment create \
+--assignee $CLUSTER_IDENT_ID \
+--role "Contributor" \
+--scope "$RG_ID"
 ```
 
 
