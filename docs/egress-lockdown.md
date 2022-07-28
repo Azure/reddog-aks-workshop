@@ -2,6 +2,9 @@
 
 Controlling the flow of traffic leaving the cluster, in particular to the public Internet is often a critical requirement. In this workshop we'll work through the setup of a firewall and the routing rules required to ensure only approved destinations are reacheable from the Azure Kubernetes Service Cluster.
 
+> **Note**
+> We will be deploying the cluster in a later step. Right now the focus is on laying the required network components that will be used later.
+
 ## Egress Lockdown Requirements
 
 * Azure Firewall should be used to control outbound network traffic
