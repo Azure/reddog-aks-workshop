@@ -66,7 +66,7 @@ FIREWALLNAME=reddog-egress
 az network firewall create -g $RG -n $FIREWALLNAME --enable-dns-proxy true
 
 # Configure Firewall IP Config
-az network firewall ip-config create -g $RG -f $FIREWALLNAME -n aks-firewallconfig --public-ip-address azfirewall-ip --vnet-name AzureFirewallSubnet
+az network firewall ip-config create -g $RG -f $FIREWALLNAME -n aks-firewallconfig --public-ip-address azfirewall-ip --vnet-name $VNET_NAME
 
 # Capture Firewall IP Address for Later Use
 FWPUBLIC_IP=$(az network public-ip show -g $RG -n azfirewall-ip --query "ipAddress" -o tsv)
