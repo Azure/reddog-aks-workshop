@@ -142,7 +142,7 @@ az network route-table route create \
 # Associate Route Table to AKS Subnet
 az network vnet subnet update \
 -g $RG \
---vnet-name aksvnet \
+--vnet-name $VNET_NAME \
 -n aks \
 --route-table aksdefaultroutes
 ```
