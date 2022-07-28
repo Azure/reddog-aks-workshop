@@ -79,7 +79,7 @@ az network firewall network-rule create \
 -n 'apiudp' \
 --protocols 'UDP' \
 --source-addresses '*' \
---destination-addresses "AzureCloud.$LOCATION" \
+--destination-addresses "AzureCloud.$LOC" \
 --destination-ports 1194 --action allow --priority 100
 
 az network firewall network-rule create \
@@ -89,7 +89,7 @@ az network firewall network-rule create \
 -n 'apitcp' \
 --protocols 'TCP' \
 --source-addresses '*' \
---destination-addresses "AzureCloud.$LOCATION" \
+--destination-addresses "AzureCloud.$LOC" \
 --destination-ports 9000
 
 az network firewall network-rule create \
