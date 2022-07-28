@@ -24,13 +24,14 @@ Since Azure Kubernetes Service needs to interact with Azure to make infrastructu
 
 1. Create the Resource Group and Azure Virtual Network and subnet that will be used for your AKS cluster. 
    > **Warning**
-   > You will be asked to add other components to the network later in the workshop, so make sure ou leave address space.
+   > You will be asked to add other components to the network later in the workshop, so make sure you leave address space.
 
 2. Get the resource ID for the subnet where the AKS cluster will be deployed.
 3. Create a managed identity for the cluster in the cluster resource group, with the rights documented in the requirements.
 4. Create a managed identity to be used by Kubelet to pull images (**NOTE:** We'll set permissions for this identity in a later step.)
 
 **Useful links:**
+
 * [Azure CLI: Create VNet](https://docs.microsoft.com/en-us/cli/azure/network/vnet?view=azure-cli-latest#az-network-vnet-create)
 * [AKS Networking Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-network)
 * [Kubenet on AKS](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet)
