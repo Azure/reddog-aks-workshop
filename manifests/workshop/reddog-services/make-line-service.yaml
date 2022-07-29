@@ -18,7 +18,6 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "make-line-service"
         dapr.io/app-port: "80"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: make-line-service

@@ -7,7 +7,7 @@ export SB_NAMESPACE=reddogsbbriar
 export VNET_NAME=reddog-vnet
 let "randomIdentifier=$RANDOM*$RANDOM"
 export SQLSERVER="briar-azuresql-server-$randomIdentifier"
-export SQLDB="briarazuresqldb$randomIdentifier"
+export SQLDB="reddog"
 export SQLLOGIN='azureuser'
 export SQLPASSWORD='w@lkingth3d0g'
 export STARTIP=67.164.0.0
@@ -70,12 +70,32 @@ SQL_CONNECTION_STRING="Server=tcp:${SQLSERVER}.database.windows.net,1433;Databas
 echo $SQL_CONNECTION_STRING
 
 kubectl create ns reddog
-kubectl create secret generic reddog.secretstore \
+kubectl create secret generic reddog.secrets \
     -n reddog \
     --from-literal=sb-connect-string=$SB_CONNECT_STRING \
     --from-literal=redis-password=$REDIS_PASSWD \
-    --from-literal=redis-server=$REDIS_SERVER \
+    --from-literal=redis-server=$REDIS_SERVER 
+
+kubectl create secret generic reddog-sql \
+    -n reddog \
     --from-literal=reddog-sql=$SQL_CONNECTION_STRING
+
+# Deploy Red Dog
+kubectl apply -f ./manifests/workshop/dapr-components
+kubectl apply -f ./manifests/workshop/reddog-services/rbac.yaml 
+kubectl apply -f ./manifests/workshop/reddog-services/bootstrapper.yaml
+
+kubectl apply -f ./manifests/workshop/reddog-services/accounting-service.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/loyalty-service.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/order-service.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/make-line-service.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/virtual-worker.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/virtual-customers.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/services-for-ui.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/ui.yaml
+
+# NSG's - Note that Microsoft Corp Security blocks all in/out traffic with an NSG (need to add rules)
+
 
 
 

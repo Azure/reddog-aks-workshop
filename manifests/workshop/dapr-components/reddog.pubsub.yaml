@@ -16,3 +16,5 @@ scopes:
   - make-line-service
   - loyalty-service
   - accounting-service
+auth:
+  secretStore: reddog.secretstore

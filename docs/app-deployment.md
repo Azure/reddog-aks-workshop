@@ -21,23 +21,33 @@ Deploy the following before deploying Red Dog.
 
 * Azure Service Bus (Standard)
 * SQL Azure
+    * The database itself should be called `reddog`
+    * Keep the server name, id, and password handy. We will create a connect string later
 * Redis Cache (deploy in your AKS cluster via Helm)
+    > Note: You can use Azure Redis Cache here. It takes a little longer to deploy, so we planned to just use Redis in cluster.
+    
 * Dapr https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/#install-with-helm-advanced
 
-## Kubernetes Secrets
+## Kubernetes Secrets Requirements
 
 For simplicity, we will just use Kubernetes secrets to allow Red Dog services to connect to the above resources. Longer term, we would want to use Azure Key Vault for secure storage. This will be covered in a future lab.
 
-* Create a secret called `reddog.blah` and add the following:
-    * Service Bus connection info
-    * SQL id/password
-    * Redis
+* Create a secret called `reddog.secrets` and add the following:
+    * Service Bus connection string (key: `sb-connect-string`)
+    * Redis server FQDN (key: `redis-server`)
+    * Redis password (key: `redis-password`)
 
 > Note: You can generally get the password/creds from the Azure CLI. Example: 
 
 ```bash
 SB_CONNECT_STRING=$(az servicebus namespace authorization-rule keys list --resource-group $RG --namespace-name $SB_NAMESPACE --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
-```    
+``` 
+
+* Create a secret called `reddog-sql` and add the following:
+    * SQL Connect String (key: `reddog-sql`)
+        ```bash
+        SQL_CONNECTION_STRING="Server=tcp:${SQLSERVER}.database.windows.net,1433;Database=reddog;User ID=${SQLLOGIN};Password=${SQLPASSWORD};Encrypt=true;Connection Timeout=30;"
+        ```
 
 ## Application Requirements
 
@@ -53,10 +63,6 @@ The YAML files needed to deploy Red Dog are provided in this repo (manifests fol
 1. Deploy the above Pre-requisites in your AKS cluster
 2. Create a secret in your AKS cluster with the necessary creds
 3. Update the Red Dog manifests and deploy everything into your AKS cluster
-
-   > **Warning**
-   > The Dapr components (CRD's) should be deployed before the applications themselves
-
 
 
 

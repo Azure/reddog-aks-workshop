@@ -17,3 +17,5 @@ spec:
         key: redis-password
 scopes:
   - make-line-service
+auth:
+  secretStore: reddog.secretstore  

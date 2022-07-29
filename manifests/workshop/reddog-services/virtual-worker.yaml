@@ -18,7 +18,6 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "virtual-worker"
         dapr.io/app-port: "80"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: virtual-worker

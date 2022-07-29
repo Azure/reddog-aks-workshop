@@ -17,3 +17,5 @@ spec:
         key: redis-password
 scopes:
   - loyalty-service
+auth:
+  secretStore: reddog.secretstore

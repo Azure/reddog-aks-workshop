@@ -33,7 +33,6 @@ spec:
       annotations:
         dapr.io/enabled: "true"
         dapr.io/app-id: "ui"
-        dapr.io/config: "reddog.config"
     spec:
       containers:
         - name: ui
