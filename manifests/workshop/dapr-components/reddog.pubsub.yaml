@@ -9,13 +9,10 @@ spec:
   metadata:
     - name: connectionString
       secretKeyRef:
-        name: sb-root-connectionstring
-        key: sb-root-connectionstring
+        name: reddog.secrets
+        key: sb-connect-string
 scopes:
   - order-service
   - make-line-service
   - loyalty-service
-  - receipt-generation-service
-  - accounting-service   
-auth:
-  secretStore: reddog.secretstore
+  - accounting-service

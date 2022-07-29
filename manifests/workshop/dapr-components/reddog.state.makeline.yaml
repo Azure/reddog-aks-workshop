@@ -8,12 +8,12 @@ spec:
   version: v1
   metadata:
     - name: redisHost
-      value: redis-release-master.redis.svc.cluster.local:6379
+      secretKeyRef:    
+        name: reddog.secrets
+        key: redis-server      
     - name: redisPassword
       secretKeyRef:    
-        name: redis-password
+        name: reddog.secrets
         key: redis-password
 scopes:
   - make-line-service
-auth:
-  secretStore: reddog.secretstore  

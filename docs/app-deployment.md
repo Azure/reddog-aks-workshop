@@ -19,7 +19,7 @@ Red Dog Overview:
 
 Deploy the following before deploying Red Dog.
 
-* Azure Service Bus
+* Azure Service Bus (Standard)
 * SQL Azure
 * Redis Cache (deploy in your AKS cluster via Helm)
 * Dapr https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/#install-with-helm-advanced
@@ -32,6 +32,12 @@ For simplicity, we will just use Kubernetes secrets to allow Red Dog services to
     * Service Bus connection info
     * SQL id/password
     * Redis
+
+> Note: You can generally get the password/creds from the Azure CLI. Example: 
+
+```bash
+SB_CONNECT_STRING=$(az servicebus namespace authorization-rule keys list --resource-group $RG --namespace-name $SB_NAMESPACE --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
+```    
 
 ## Application Requirements
 
