@@ -21,8 +21,9 @@ Controlling the flow of traffic leaving the cluster, in particular to the public
 
 ## Task:
 
-1. Create and configure the Azure Firewall
-2. Create and configure the Azure Route table
+1. Create a subnet for the Azure Firewall
+2. Create and configure the Azure Firewall
+3. Create and configure the Azure Route table
 
 **Useful links:**
 

@@ -16,6 +16,8 @@ You were asked to complete the following tasks:
 
 ### Resource Group Creation
 
+All resource in Azure are placed in a resource group, so we need to start there before creating any other resources:
+
 ```bash
 # Resource Group Creation
 RG=RedDogAKSWorkshop
