@@ -48,13 +48,6 @@ az network vnet create \
 --address-prefix 10.140.0.0/16 \
 --subnet-name aks \
 --subnet-prefix 10.140.0.0/24
-
-# Adding a subnet for the Azure Firewall
-az network vnet subnet create \
---resource-group $RG \
---vnet-name $VNET_NAME \
---name AzureFirewallSubnet \
---address-prefix 10.140.1.0/24
 ```
 
 When we create the AKS Cluster, we'll need the Azure Resource ID for the subnet where the cluster will be deployed. Here's how we get that:
