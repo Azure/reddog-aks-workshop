@@ -7,6 +7,7 @@ export SB_NAMESPACE=reddogsbbriar
 export VNET_NAME=reddog-vnet
 let "randomIdentifier=$RANDOM*$RANDOM"
 export SQLSERVER="briar-azuresql-server-$randomIdentifier"
+# export SQLSERVER="briar-azuresql-server-13005848"
 export SQLDB="reddog"
 export SQLLOGIN='azureuser'
 export SQLPASSWORD='w@lkingth3d0g'
@@ -37,7 +38,7 @@ https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickst
 # Deploy Azure SQL, Database, and Firewall rule
 az sql server create --name $SQLSERVER --resource-group $RG --location $LOC --admin-user $SQLLOGIN --admin-password $SQLPASSWORD
 
-az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address $STARTIP --end-ip-address $ENDIP
+az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address $STARTIP --end-ip-address $ENDIP # for your machine if needed
 az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address '0.0.0.0' --end-ip-address '0.0.0.0' # for all Azure services
 
 az sql db create --resource-group $RG --server $SQLSERVER --name $SQLDB --edition GeneralPurpose --family Gen5 --capacity 2 --zone-redundant false
@@ -59,32 +60,37 @@ kubectl create ns dapr-system
 helm install dapr dapr/dapr --namespace dapr-system
 
 # Create AKS Secrets - first get values for creds
+
+# Get Service Bus Connection String
 SB_CONNECT_STRING=$(az servicebus namespace authorization-rule keys list --resource-group $RG --namespace-name $SB_NAMESPACE --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
 echo $SB_CONNECT_STRING
 
-    # fix password if needed
-    SQLSERVER='briar-azuresql-server-13005848'
-    az sql server update --name $SQLSERVER --resource-group $RG --admin-password $SQLPASSWORD
+# Fix password if needed
+SQLSERVER='briar-azuresql-server-13005848'
+az sql server update --name $SQLSERVER --resource-group $RG --admin-password $SQLPASSWORD
 
+# Get SQL Connection String
 SQL_CONNECTION_STRING="Server=tcp:${SQLSERVER}.database.windows.net,1433;Database=reddog;User ID=${SQLLOGIN};Password=${SQLPASSWORD};Encrypt=true;Connection Timeout=30;"
 echo $SQL_CONNECTION_STRING
 
+# Create secrets
 kubectl create ns reddog
 kubectl create secret generic reddog.secrets \
-    -n reddog \
+    --namespace reddog \
     --from-literal=sb-connect-string=$SB_CONNECT_STRING \
     --from-literal=redis-password=$REDIS_PASSWD \
     --from-literal=redis-server=$REDIS_SERVER 
 
 kubectl create secret generic reddog-sql \
-    -n reddog \
+    --namespace reddog \
     --from-literal=reddog-sql=$SQL_CONNECTION_STRING
 
-# Deploy Red Dog
+# Deploy Red Dog Dapr configs
 kubectl apply -f ./manifests/workshop/dapr-components
-kubectl apply -f ./manifests/workshop/reddog-services/rbac.yaml 
-kubectl apply -f ./manifests/workshop/reddog-services/bootstrapper.yaml
+kubectl apply -f ./manifests/workshop/reddog-services/rbac.yaml
 
+# Deploy Red Dog services
+kubectl apply -f ./manifests/workshop/reddog-services/bootstrapper.yaml
 kubectl apply -f ./manifests/workshop/reddog-services/accounting-service.yaml
 kubectl apply -f ./manifests/workshop/reddog-services/loyalty-service.yaml
 kubectl apply -f ./manifests/workshop/reddog-services/order-service.yaml
@@ -95,8 +101,5 @@ kubectl apply -f ./manifests/workshop/reddog-services/services-for-ui.yaml
 kubectl apply -f ./manifests/workshop/reddog-services/ui.yaml
 
 # NSG's - Note that Microsoft Corp Security blocks all in/out traffic with an NSG (need to add rules)
-
-
-
 
 ```

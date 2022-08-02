@@ -1,0 +1,21 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: reddog.state.makeline
+  namespace: reddog
+spec:
+  type: state.redis
+  version: v1
+  metadata:
+    - name: redisHost
+      secretKeyRef:    
+        name: reddog.secrets
+        key: redis-server      
+    - name: redisPassword
+      secretKeyRef:    
+        name: reddog.secrets
+        key: redis-password
+scopes:
+  - make-line-service
+auth:
+  secretStore: reddog.secretstore  

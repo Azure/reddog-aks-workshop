@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-service
+  name: loyalty-service
   namespace: reddog
   labels:
-    app: order-service
+    app: loyalty-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: order-service
+      app: loyalty-service
   template:
     metadata:
       labels:
-        app: order-service
+        app: loyalty-service
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "order-service"
+        dapr.io/app-id: "loyalty-service"
         dapr.io/app-port: "80"
     spec:
       containers:
-        - name: order-service
-          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-order-service:latest"
+        - name: loyalty-service
+          image: "ghcr.io/azure/reddog-retail-demo/reddog-retail-loyalty-service:latest"
           ports:
             - containerPort: 80
           imagePullPolicy: Always
