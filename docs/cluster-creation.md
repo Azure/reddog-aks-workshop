@@ -8,11 +8,13 @@ In previous steps you should have created the network foundation for your cluste
 * The cluster must be created in the 'aks' subnet you created previously
 * The cluster should be configured so that outbound traffic uses the route table you've created which forces internet traffic to the Azure Firewall
 * The cluster should use the following address spaces:
-    * Pod CIDR: 10.244.0.0/24
+    * Pod CIDR: 10.244.0.0/16
     * Service CIDR: 10.245.0.0/24
     * DNS Service IP: 10.245.0.10
 * The cluster should use the cluster and kubelet identities you've already created
+* The cluster should be configured to use 'Calico' Kubernetes Network Policy
 * The cluster should have both a 'System' and 'User' mode nodepool
+* The initial pool created will be the system pool and should be called 'systempool'
 * The 'System' mode pool should be tainted to only allow system pods
 
 ## Task:
@@ -25,6 +27,7 @@ In previous steps you should have created the network foundation for your cluste
 
 * [Kubenet on AKS](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet)
 * [Azure CNI on AKS](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni)
+* [Calico Network Policy](https://docs.microsoft.com/en-us/azure/aks/use-network-policies#create-an-aks-cluster-for-calico-network-policies)
 * [AKS Egress Lockdown](https://docs.microsoft.com/en-us/azure/aks/limit-egress-traffic)
 * [Azure Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 * [Using Managed Identities with AKS](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)
