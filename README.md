@@ -21,7 +21,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * [Egress lockdown](./docs/egress-lockdown.md)
 * AKS Cluster Design / Sizing
     * [Cluster and nodepool design and creation](./docs/cluster-creation.md)
-    * Cluster and node autoscaler 
+    * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
     * Upgrade planning
     * Azure Policy
 * Network Security - Part 2
