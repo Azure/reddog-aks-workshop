@@ -17,15 +17,15 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * [Environment Preparation (Start here)](./docs/environment-prep.md)
     * Network Planning
     * Identity Planning
+* Network Security - Part 1
+    * [Egress lockdown](./docs/egress-lockdown.md)
 * AKS Cluster Design / Sizing
-    * Cluster creation script 
+    * [Cluster and nodepool design and creation](./docs/cluster-creation.md)
     * Cluster and node autoscaler 
-    * Node pool design, System node pools, taints
     * Upgrade planning
     * Azure Policy
-* Network Security
-    * [Egress lockdown](./docs/egress-lockdown.md)
-    * Ingress
+* Network Security - Part 2
+    * Ingress Control
     * Network Policy 
 * [Application Manifests and Deployment](./docs/app-deployment.md)
     * Version control / Image tags
