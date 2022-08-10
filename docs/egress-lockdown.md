@@ -32,3 +32,7 @@ Controlling the flow of traffic leaving the cluster, in particular to the public
 * [What is Azure Firewall](https://docs.microsoft.com/en-us/azure/firewall/overview)
 * [Virtual Network Traffic Routing](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview)
 * [Managing Azure Route Tables](https://docs.microsoft.com/en-us/azure/virtual-network/manage-route-table)
+
+### Next:
+
+Now that you have the network prepared to host your secure AKS cluster, you're ready to continue on to the [Cluster Creation](./cluster-creation.md) step.

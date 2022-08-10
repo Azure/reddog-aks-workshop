@@ -35,3 +35,7 @@ Since Azure Kubernetes Service needs to interact with Azure to make infrastructu
 * [AKS Networking Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-network)
 * [Azure Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 * [Using Managed Identities with AKS](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)
+
+### Next:
+
+Once you've completed the above task you should move on to [Egress Lockdown](./egress-lockdown.md) setup, where you'll be building the target network infrastructure to host your AKS cluster.
