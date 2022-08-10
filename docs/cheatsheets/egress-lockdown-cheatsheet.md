@@ -104,6 +104,7 @@ az network firewall application-rule create \
 --action allow --priority 100
 ```
 
+
 ### Create the Azure Route Table
 
 Now that the firewall is created, we can create an Azure Route Table which will ensure that all Internet bound traffic from the AKS subnet gets sent to the Azure Firewall.
