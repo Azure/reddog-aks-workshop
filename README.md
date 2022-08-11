@@ -17,37 +17,36 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * [Environment Preparation (Start here)](./docs/environment-prep.md)
     * Network Planning
     * Identity Planning
-* Network Security - Part 1
-    * [Egress lockdown](./docs/egress-lockdown.md)
-* AKS Cluster Design / Sizing
-    * [Cluster and nodepool design and creation](./docs/cluster-creation.md)
-    * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
-    * Upgrade planning
-    * Azure Policy
-* Network Security - Part 2
-    * Ingress Control
-    * Network Policy 
+* [Egress lockdown (Optional)](./docs/egress-lockdown.md)
+* [Cluster Creation / Nodepool Design](./docs/cluster-creation.md)
 * [Application Manifests and Deployment](./docs/app-deployment.md)
     * Version control / Image tags
     * Resource requirements (CPU, memory, etc.)
     * Secret/Config management
     * Health probes
-* GitOps
-* CI/CD 
-* Monitoring / Logging
+* Monitoring / Logging (Joey)
     * Azure Monitor
     * Prometheus / Grafana
+    * Alerting
     * Logging (eg - Fluentd)
     * Tracing / App Insights   
-* App Scaling
-    * HPA
-    * KEDA
-* Image Management / Container Registry
+* Networking (Steve)
+    * Ingress
+    * Network Policy 
+* Image Management / Container Registry (Brian)
     * Bring images into ACR 
-    * Security
-* Security Topics
-* Service Mesh
-* Storage
+    * Image Security
+* CI/CD & GitOps (Brian)
+* Autoscaling (Steve)
+    * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
+    * HPA / KEDA
+* AKS Cluster Management (Steve)
+    * Upgrade planning
+    * Azure Policy
+* Service Mesh (Brian - use Buoyant content)
+* Storage (Joey)
+
+
 
 ## Contributing
 

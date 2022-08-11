@@ -1,13 +1,12 @@
 ## App Deployment Cheatsheet
 
 ```bash
-export RG=reddog-aks-workshop
+export RG=RedDogAKSWorkshop
 export LOC=eastus
 export SB_NAMESPACE=reddogsbbriar
 export VNET_NAME=reddog-vnet
 let "randomIdentifier=$RANDOM*$RANDOM"
 export SQLSERVER="briar-azuresql-server-$randomIdentifier"
-# export SQLSERVER="briar-azuresql-server-13005848"
 export SQLDB="reddog"
 export SQLLOGIN='azureuser'
 export SQLPASSWORD='w@lkingth3d0g'
@@ -15,20 +14,6 @@ export STARTIP=67.164.0.0
 export ENDIP=67.164.255.255
 export REDIS_PASSWD='w@lkingth3d0g'
 export REDIS_SERVER='redis-release-master.redis.svc.cluster.local:6379'
-
-SUBNET_ID=$(az network vnet subnet list \
-    --resource-group $RG \
-    --vnet-name $VNET_NAME \
-    --query "[0].id" --output tsv)
-
-az aks create \
-    --resource-group $RG \
-    --name briar-aks-workshop \
-    --network-plugin azure \
-    --vnet-subnet-id $SUBNET_ID \
-    --docker-bridge-address 172.17.0.1/16 \
-    --dns-service-ip 10.2.0.10 \
-    --service-cidr 10.2.0.0/24
 
 # Deploy Azure Service Bus
 az servicebus namespace create --resource-group $RG --name $SB_NAMESPACE --location $LOC
