@@ -1,4 +1,4 @@
-# Enviornemnt Preparation
+# Environemnt Preparation
 
 Before creating an enterprise ready AKS cluster there are some foundations you must lay down. The complexity of these foundations will depend heavily on the individual organization and their networking and security requirements. For example, some organizations are happy to create custers completely disconnected from their corporate network and allow for public IPs to be created from that cluster. Other organizations will enforce the use of a specific network location with pre-planned egress and ingress control in place. Some organizations allow Azure subscription owners the right to create identities and manage identity access within the subscription, while others strictly enforce centralized identity and access control.
 
