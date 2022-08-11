@@ -19,34 +19,43 @@ Red Dog Overview:
 
 Deploy the following before deploying Red Dog.
 
-* Azure Service Bus (Standard)
+* Azure Service Bus (Standard SKU)
 * SQL Azure
     * The database itself should be called `reddog`
     * Keep the server name, id, and password handy. We will create a connect string later
 * Redis Cache (deploy in your AKS cluster via Helm)
-    > Note: You can use Azure Redis Cache here. It takes a little longer to deploy, so we planned to just use Redis in cluster.
-    
+    * Guide: https://bitnami.com/stack/redis/helm 
+    * You can use Azure Redis Cache here. It takes a little longer to deploy, so we planned to just use Redis in cluster
 * Dapr https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/#install-with-helm-advanced
 
 ## Kubernetes Secrets Requirements
 
 For simplicity, we will just use Kubernetes secrets to allow Red Dog services to connect to the above resources. Longer term, we would want to use Azure Key Vault for secure storage. This will be covered in a future lab.
 
-* Create a secret called `reddog.secrets` and add the following:
+Two secrets are required to deploy the app (everything must be created in the `reddog` namespace):
+
+1. `reddog.secrets` with the following keys:
     * Service Bus connection string (key: `sb-connect-string`)
     * Redis server FQDN (key: `redis-server`)
     * Redis password (key: `redis-password`)
 
-> Note: You can generally get the password/creds from the Azure CLI. Example: 
+        ```bash
+        SB_CONNECT_STRING=$(az servicebus namespace authorization-rule keys list --resource-group $RG --namespace-name $SB_NAMESPACE --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
 
-```bash
-SB_CONNECT_STRING=$(az servicebus namespace authorization-rule keys list --resource-group $RG --namespace-name $SB_NAMESPACE --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
-``` 
+        kubectl create secret generic reddog.secrets \
+            --namespace reddog \
+            --from-literal=sb-connect-string=$SB_CONNECT_STRING \
+            --from-literal=redis-password=$REDIS_PASSWD \
+            --from-literal=redis-server=$REDIS_SERVER 
+        ``` 
 
-* Create a secret called `reddog-sql` and add the following:
+2. `reddog-sql` with the following key:
     * SQL Connect String (key: `reddog-sql`)
+
         ```bash
         SQL_CONNECTION_STRING="Server=tcp:${SQLSERVER}.database.windows.net,1433;Database=reddog;User ID=${SQLLOGIN};Password=${SQLPASSWORD};Encrypt=true;Connection Timeout=30;"
+
+        # use a kubectl create secret command similar to above
         ```
 
 ## Application Requirements
@@ -55,18 +64,26 @@ The YAML files needed to deploy Red Dog are provided in this repo (manifests fol
 
 * Everything should be deployed into a namespace called `reddog` 
 * Resource requests/limits are required and must be added to the deployment manifests. Think about total cluster resources and ensure that everything can be run in the cluster
+    * For the purposes of this workshop, you can just add these requests/limits to just one of the services
+* Deploy the Dapr components first
 
-> For the purposes of this workshop, you can just add these requests/limits to just one of the services
+    ```bash
+    kubectl apply -f ./manifests/workshop/dapr-components
+    ```
+* Set RoleBindings for Dapr to work properly
+
+    ```bash
+    kubectl apply -f ./manifests/workshop/reddog-services/rbac.yaml
+    ```
 
 ## Tasks:
 
-1. Deploy the above Pre-requisites in your AKS cluster
-2. Create a secret in your AKS cluster with the necessary creds
+1. Deploy the above pre-requisites in your AKS cluster
+2. Create 2 secrets in your AKS cluster with the necessary creds as above
 3. Update the Red Dog manifests and deploy everything into your AKS cluster
 
+When the deploy is successful, you should see the following in the cluster and the UI:
 
+![pods](./assets/kubectl-reddog.png)
 
-
-
-
-
+![UI Dashboard](./assets/ui-dhasboard.png)

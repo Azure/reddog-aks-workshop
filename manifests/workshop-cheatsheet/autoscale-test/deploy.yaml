@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app
+spec:
+  selector:
+    matchLabels:
+      run: sample-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: sample-app
+    spec:
+      containers:
+      - name: sample-app
+        image: mcr.microsoft.com/dotnet/samples:aspnetapp
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-app
+  labels:
+    run: sample-app
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: sample-app
+  type: LoadBalancer
+

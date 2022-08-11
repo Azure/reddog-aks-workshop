@@ -1,4 +1,4 @@
-# Enviornemnt Preparation
+# Environment Preparation
 
 Before creating an enterprise ready AKS cluster there are some foundations you must lay down. The complexity of these foundations will depend heavily on the individual organization and their networking and security requirements. For example, some organizations are happy to create custers completely disconnected from their corporate network and allow for public IPs to be created from that cluster. Other organizations will enforce the use of a specific network location with pre-planned egress and ingress control in place. Some organizations allow Azure subscription owners the right to create identities and manage identity access within the subscription, while others strictly enforce centralized identity and access control.
 
@@ -10,7 +10,6 @@ Azure Kubernetes Service ultimately runs on virtual machines, and those virtual 
 
 * You've been given the following address space to use for your environment 
   * 10.140.0.0/16
-* The organization has limited available IP space, so you'll need to chose the AKS network plug-in that will use the fewest private IP addresses
 
 ## Identity Planning Requirements
 
@@ -34,6 +33,9 @@ Since Azure Kubernetes Service needs to interact with Azure to make infrastructu
 
 * [Azure CLI: Create VNet](https://docs.microsoft.com/en-us/cli/azure/network/vnet?view=azure-cli-latest#az-network-vnet-create)
 * [AKS Networking Concepts](https://docs.microsoft.com/en-us/azure/aks/concepts-network)
-* [Kubenet on AKS](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet)
 * [Azure Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 * [Using Managed Identities with AKS](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)
+
+### Next:
+
+Once you've completed the above task you should move on to [Egress Lockdown](./egress-lockdown.md) setup, where you'll be building the target network infrastructure to host your AKS cluster.

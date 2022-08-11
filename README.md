@@ -6,22 +6,28 @@ Hands-on workshop to guide learning Azure Kubernetes Service (AKS) and deploy su
 
 This repository leverages the [reddog applicaton codebase](https://github.com/Azure/reddog-code) and is created by the Global Black Belt Team from Microsoft.
 
+## Prerequisites
+
+* Access to an Azure Subscription
+* Access to Azure Cloud Shell
+  * [https://shell.azure.com/](https://shell.azure.com/)
+
 ## Workshop Modules
 
-* Environment Preparation
+* [Environment Preparation (Start here)](./docs/environment-prep.md)
     * Network Planning
     * Identity Planning
+* Network Security - Part 1
+    * [Egress lockdown](./docs/egress-lockdown.md)
 * AKS Cluster Design / Sizing
-    * Cluster creation script 
-    * Cluster and node autoscaler 
-    * Node pool design, System node pools, taints
+    * [Cluster and nodepool design and creation](./docs/cluster-creation.md)
+    * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
     * Upgrade planning
     * Azure Policy
-* Network Security
-    * Egress lockdown
-    * Ingress
+* Network Security - Part 2
+    * Ingress Control
     * Network Policy 
-* Application Manifests and Deployment
+* [Application Manifests and Deployment](./docs/app-deployment.md)
     * Version control / Image tags
     * Resource requirements (CPU, memory, etc.)
     * Secret/Config management
@@ -43,16 +49,6 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Security Topics
 * Service Mesh
 * Storage
-
-## Prerequisites
-
-* Access to an Azure Subscription
-* Access to Azure Cloud Shell
-  * [https://shell.azure.com/](https://shell.azure.com/)
-
-## Getting Started
-
-Jump to the [index of modules](docs/toc.md) in the docs and get going.
 
 ## Contributing
 
