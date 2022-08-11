@@ -114,16 +114,131 @@ To test the HPA we need to create a deployment and a service with resource limit
 
 Lets deploy the application and test the HPA:
 
+> **NOTE**
+> The cluster is set up with egress lockdown, which means that you cant just put a public IP on a service, so you'll need to expose a private service via an [Azure Internal Load Balancer](https://docs.microsoft.com/en-us/azure/aks/internal-lb) and then test against the private IP.
+
 ```bash
 # Apply the deployment, adjusting the relative path as needed
 kubectl apply -f ../../manifests/workshop-cheatsheet/autoscale-test/deploy.yaml
 deployment.apps/php-apache created
 service/php-apache created
 
-# Checkc out the deployment
+# Check out the deployment
+kubectl get svc,pods
+NAME                 TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes   ClusterIP      10.245.0.1     <none>        443/TCP        47h
+service/sample-app   LoadBalancer   10.245.0.144   10.140.0.5    80:32487/TCP   5m4s
+
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/sample-app-698647c467-4vr7z   1/1     Running   0          22m
 ```
 
+Next you should test that you can access the service. As mentioned above, you need to test against the private IP. There are many ways to do this. We'll take the simple appraoch of deploying an Ubuntu pod (Note: Make sure you've allowed Docker images and the Ubuntu Package Manager FQDNs through your egress firewall. Steps are at the end of the Egress Lockdown cheat sheet).
 
-### NEED TO FINISH
+```bash
+# Lets start and jump into an Ubuntu pod
+kubectl run -it --rm ubuntu --image=ubuntu -- bash
+
+# Run the following in the pod
+apt update
+apt install apache2-utils 
+
+ab -V
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+# Run some load against the private IP of your sample-app service
+ab -t 60 http://10.140.0.5/
+
+# You should get output like the following
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 10.140.0.5 (be patient)
+Completed 5000 requests
+Completed 10000 requests
+Completed 15000 requests
+Completed 20000 requests
+Finished 23240 requests
+
+
+Server Software:        Kestrel
+Server Hostname:        10.140.0.5
+Server Port:            80
+
+Document Path:          /
+Document Length:        3497 bytes
+
+Concurrency Level:      1
+Time taken for tests:   60.001 seconds
+Complete requests:      23240
+Failed requests:        0
+Total transferred:      84337960 bytes
+HTML transferred:       81270280 bytes
+Requests per second:    387.33 [#/sec] (mean)
+Time per request:       2.582 [ms] (mean)
+Time per request:       2.582 [ms] (mean, across all concurrent requests)
+Transfer rate:          1372.67 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        1    1   0.8      1      16
+Processing:     1    1   3.8      1      62
+Waiting:        0    1   3.8      1      62
+Total:          1    3   3.9      2      63
+
+Percentage of the requests served within a certain time (ms)
+  50%      2
+  66%      2
+  75%      2
+  80%      2
+  90%      3
+  95%      4
+  98%      9
+  99%     15
+ 100%     63 (longest request)
+```
+
+Now lets deploy the Horizontal Pod Autoscaler and test it. It would probably be best to do this in a new terminal window, so you can keep your ApacheBench terminal up and running, if you used the steps above.
+
+```bash
+# Deploy the hpa config
+kubectl apply -f ../../manifests/workshop-cheatsheet/autoscale-test/hpa.yaml
+
+# In one terminal lets watch the status of the HPA and the pod count
+watch kubectl get hpa,pods
+
+# Back in the ApacheBench temrinal, run another test.
+ab -t 60 http://10.140.0.5/
+
+# After a few seconds you should start to see the HPA target metrics increase and the pod count go up
+
+## BEFORE
+NAME                                             REFERENCE               TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/sample-app   Deployment/sample-app   0%/50%    1         10        1          36s
+
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/sample-app-698647c467-pnw78   1/1     Running   0          6m21s
+pod/ubuntu                        1/1     Running   0          10m
+
+## AFTER
+NAME                                             REFERENCE               TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/sample-app   Deployment/sample-app   135%/50%   1         10        1          83s
+
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/sample-app-698647c467-np2lj   1/1     Running   0          8s
+pod/sample-app-698647c467-pnw78   1/1     Running   0          7m8s
+pod/sample-app-698647c467-sgrcx   1/1     Running   0          8s
+pod/ubuntu                        1/1     Running   0          10m
+
+# After a bit you should also see the pods if you check 'top pod'
+kubectl top pod
+NAME                          CPU(cores)   MEMORY(bytes)   
+sample-app-698647c467-np2lj   14m          21Mi            
+sample-app-698647c467-pnw78   161m         61Mi            
+sample-app-698647c467-sgrcx   15m          22Mi   
+```
 
 

@@ -142,3 +142,37 @@ az network vnet subnet update \
 -n aks \
 --route-table aksdefaultroutes
 ```
+
+<HR>
+<BR>
+
+## Extra Firewall Rules
+
+As you perform other actions you may find that images are blocked, or you have other issue. Here are a few known firewall rules you may add along the way.
+
+### Docker Hub Rules
+
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'aksfwdocker' \
+-n 'docker' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns auth.docker.io registry-1.docker.io index.docker.io dseasb33srnrn.cloudfront.net production.cloudflare.docker.com \
+--action allow --priority 101
+```
+
+### Ubuntu Apt
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'aksfwnr' \
+-n 'ubuntu-apt' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns archive.ubuntu.com security.ubuntu.com \
+--action allow --priority 102
+```
