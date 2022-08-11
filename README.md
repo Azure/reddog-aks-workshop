@@ -33,6 +33,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Prometheus / Grafana
     * Logging (eg - Fluentd)
     * Tracing / App Insights   
+        https://docs.dapr.io/operations/monitoring/tracing/open-telemetry-collector-appinsights/
 * App Scaling
     * HPA
     * KEDA
