@@ -33,10 +33,10 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Networking (Steve)
     * Ingress
     * Network Policy 
-* Image Management / Container Registry (Brian)
+* [Image Management / Container Registry](./docs/container-registry.md) (Brian)
     * Bring images into ACR 
     * Image Security
-* CI/CD & GitOps (Brian)
+* [CI/CD & GitOps](./docs/cicd-gitops.md) (Brian)
 * Autoscaling (Steve)
     * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
     * HPA / KEDA
