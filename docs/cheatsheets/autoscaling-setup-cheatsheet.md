@@ -241,4 +241,6 @@ sample-app-698647c467-pnw78   161m         61Mi
 sample-app-698647c467-sgrcx   15m          22Mi   
 ```
 
+### Test the Cluster Autoscaler
 
+The Cluster Autoscaler is looking for pods that are in a 'Pending' state because there arent enough nodes to handle the requested resources. To test it, we can tell the Kubernetes 

@@ -38,4 +38,7 @@ Since Azure Kubernetes Service needs to interact with Azure to make infrastructu
 
 ### Next:
 
-Once you've completed the above task you should move on to [Egress Lockdown](./egress-lockdown.md) setup, where you'll be building the target network infrastructure to host your AKS cluster.
+Once you've completed the above task you will need to decide if you plan to continue on the path to set up your environment with full Internet egress lockdown (i.e. all outbound traffic flowing through an egress firewally) or if you will allow all Internet egress traffic by default.
+
+* **Option 1:** Continue to [Egress Lockdown](./egress-lockdown.md) setup
+* **Option 2:** Jump ahead to [Cluster Creation](./cluster-creation.md)

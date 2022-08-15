@@ -4,7 +4,7 @@ In cluster creation, you were given the following requirements:
 
 * The organization has limited available IP space, so you'll need to choose the AKS network plug-in that will use the fewest private IP addresses
 * The cluster must be created in the 'aks' subnet you created previously
-* The cluster should be configured so that outbound traffic uses the route table you've created which forces internet traffic to the Azure Firewall
+* **If you followed the egress lockdown path**, the cluster should be configured so that outbound traffic uses the route table you've created which forces internet traffic to the Azure Firewall, otherwise you can use the default cluster egress model.
 * The cluster should use the following address spaces:
     * Pod CIDR: 10.244.0.0/16
     * Service CIDR: 10.245.0.0/24
@@ -52,7 +52,9 @@ Given the requirements we will set the following in our cluster creation command
 
 * Our cluster creation command will specify a target Vnet/Subnet
 * We'll choose [kubenet](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet) as the network plugin, as it requires the list IP space
-* We're behind an egress firewall, and need to egress via the route table, so we'll set the 'OutboundType' to use 'UserDefinedRouting'
+* Configure the cluster egress model:
+  * **If you followed the egress lockdown path**, set the 'OutboundType' to use 'UserDefinedRouting'
+  * **If you didn't follow the egress lockdown path**, set the 'OutboundType' to use 'LoadBalancer', or don't set it at all as this is the default value
 * We'll set the following address ranges (CIDRs)
     * Pod CIDR: 10.244.0.0/24
     * Service CIDR: 10.245.0.0/24
@@ -65,6 +67,10 @@ Given the requirements we will set the following in our cluster creation command
 CLUSTER_NAME=reddog-griffith
 
 # Cluster Creation Command
+
+# NOTE: You only need to set --outbound-type if you followed the egress
+# lockdown approach. If you didn't, then set it to 'LoadBalancer' or leave it
+# off entirely, as 'LoadBalancer' is the default value.
 az aks create \
 -g $RG \
 -n $CLUSTER_NAME \
