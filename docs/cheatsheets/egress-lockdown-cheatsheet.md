@@ -206,6 +206,21 @@ az network firewall application-rule create \
 --action allow --priority 104
 ```
 
+
+### K8s Registry (Ingress Nginx Registry)
+
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'k8scr' \
+-n 'k8scr' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns registry.k8s.io k8s.gcr.io storage.googleapis.com \
+--action allow --priority 105
+```
+
 ### Service Bus Endpoint
 
 ```bash
