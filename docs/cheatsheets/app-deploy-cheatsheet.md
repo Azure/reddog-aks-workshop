@@ -10,8 +10,8 @@ export SQLSERVER="briar-azuresql-server-$randomIdentifier"
 export SQLDB="reddog"
 export SQLLOGIN='azureuser'
 export SQLPASSWORD='w@lkingth3d0g'
-export STARTIP=67.164.0.0
-export ENDIP=67.164.255.255
+# Get your current IP
+export MYIP=$(curl icanhazip.com)
 export REDIS_PASSWD='w@lkingth3d0g'
 export REDIS_SERVER='redis-release-master.redis.svc.cluster.local:6379'
 
@@ -23,8 +23,14 @@ https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickst
 # Deploy Azure SQL, Database, and Firewall rule
 az sql server create --name $SQLSERVER --resource-group $RG --location $LOC --admin-user $SQLLOGIN --admin-password $SQLPASSWORD
 
-az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address $STARTIP --end-ip-address $ENDIP # for your machine if needed
+az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address $MYIP --end-ip-address $MYIP # for your machine if needed
 az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address '0.0.0.0' --end-ip-address '0.0.0.0' # for all Azure services
+
+#####################################################
+# ONLY IF YOU FOLLOWED THE EGRESS LOCKDOWN SETUP
+FIREWALL_IP=$(az network public-ip show -g $RG -n azfirewall-ip -o tsv --query ipAddress)
+az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n AllowYourIp --start-ip-address $FIREWALL_IP --end-ip-address $FIREWALL_IP
+#####################################################
 
 az sql db create --resource-group $RG --server $SQLSERVER --name $SQLDB --edition GeneralPurpose --family Gen5 --capacity 2 --zone-redundant false
 
@@ -51,7 +57,6 @@ SB_CONNECT_STRING=$(az servicebus namespace authorization-rule keys list --resou
 echo $SB_CONNECT_STRING
 
 # Fix password if needed
-SQLSERVER='briar-azuresql-server-13005848'
 az sql server update --name $SQLSERVER --resource-group $RG --admin-password $SQLPASSWORD
 
 # Get SQL Connection String
