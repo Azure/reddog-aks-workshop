@@ -93,3 +93,42 @@ kubectl apply -f ./manifests/workshop/reddog-services/ui.yaml
 # NSG's - Note that Microsoft Corp Security blocks all in/out traffic with an NSG (need to add rules)
 
 ```
+
+### Accessing the App
+
+If you didn't follow the egress lockdown path, you should be able to simply run the following to get the public IP of the UI and browse to it.
+
+```bash
+# Get the UI Service Public IP
+kubectl get svc -n reddog
+NAME                      TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                               AGE
+accounting-service        ClusterIP      10.245.0.51    <none>           8083/TCP                              18m
+accounting-service-dapr   ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+loyalty-service-dapr      ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+make-line-service         ClusterIP      10.245.0.126   <none>           8082/TCP                              18m
+make-line-service-dapr    ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+order-service             ClusterIP      10.245.0.166   <none>           8081/TCP                              18m
+order-service-dapr        ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+ui                        LoadBalancer   10.245.0.201   20.237.123.135   80:31828/TCP                          18m
+ui-dapr                   ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+virtual-customers-dapr    ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+virtual-worker-dapr       ClusterIP      None           <none>           80/TCP,50001/TCP,50002/TCP,9090/TCP   19h
+
+# In your browser, given the above, you'd navigate to http://20.237.123.135/
+```
+
+If you **DID** follow the egress lockdown path, things are a bit more compicated. The easy way to connect to the UI is with a kubectl port-forward, to map a port on your local machine to the service.
+
+> **NOTE:**
+> Port forwards will not work in cloud shell. You need to do them from your local machine.
+
+```bash
+# Forward local port 8080 to the service port 80
+kubectl port-forward svc/ui 8080:80
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+
+# In your browser you'd navigate to http://localhost:8080/
+```
+
+At this point you should see the page load. If the tables and charts arent loading, consider checking your firewall rules to make sure Azure Service Bus and Azure SQL are permitted to egress on their respective ports.
