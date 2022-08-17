@@ -53,6 +53,30 @@ NAME                                            READY   STATUS    RESTARTS   AGE
 pod/ingress-nginx-controller-55dcf56b68-m4hdb   1/1     Running   0          87s
 ```
 
+Delete and recreate the service configuration to remove the public IP.
+
+```bash
+kubectl delete svc ui -n reddog
+
+cat <<EOF | kubectl apply -n reddog -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui
+  namespace: reddog  
+  labels:
+    name: ui
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: ui
+EOF
+
+```
 Deploy the Ingress configuration.
 
 ```bash
@@ -105,6 +129,19 @@ service/ingress-nginx-controller-admission   ClusterIP      10.245.0.180   <none
 
 NAME                                            READY   STATUS    RESTARTS   AGE
 pod/ingress-nginx-controller-55dcf56b68-m4hdb   1/1     Running   0          87s
+```
+
+Deploy the Ingress configuration.
+
+```bash
+# Apply the ingress manifest
+kubectl apply -f ../../manifests/workshop-cheatsheet/ingress/ingress.yaml -n reddog
+
+# Check ingress status
+kubectl get ingress -n reddog
+NAME               CLASS   HOSTS   ADDRESS      PORTS   AGE
+reddog-ui          nginx   *       10.140.0.6   80      66m
+reddog-ui-static   nginx   *       10.140.0.6   80      56m
 ```
 
 Now that your ingress is running you can port-forward to access the site, until you open up a public IP for your ingress controller.

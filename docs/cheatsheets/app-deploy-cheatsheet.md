@@ -3,10 +3,10 @@
 ```bash
 export RG=RedDogAKSWorkshop
 export LOC=eastus
-export SB_NAMESPACE=reddogsbbriar
+export SB_NAMESPACE=reddogsb
 export VNET_NAME=reddog-vnet
 let "randomIdentifier=$RANDOM*$RANDOM"
-export SQLSERVER="briar-azuresql-server-$randomIdentifier"
+export SQLSERVER="$randomIdentifier-azuresql-server"
 export SQLDB="reddog"
 export SQLLOGIN='azureuser'
 export SQLPASSWORD='w@lkingth3d0g'
