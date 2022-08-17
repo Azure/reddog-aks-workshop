@@ -72,20 +72,22 @@ az identity create \
 --name clusteridentity \
 --resource-group $RG
 
-# Grant the Managed Identity Contributor on the Resource Group
-az role assignment create \
---assignee $CLUSTER_IDENT_ID \
---role "Contributor" \
---scope "$RG_ID"
-```
-
-In a later step you may need the Azure Resource ID for the managed identity. Here's how you get that:
-
-```bash
 # Get Managed Identity Resource ID
 CLUSTER_IDENT_ID=$(az identity show \
 --name clusteridentity \
 -g $RG \
 -o tsv \
 --query principalId)
+
+# Grant the Managed Identity Contributor on the Resource Group
+az role assignment create \
+--assignee $CLUSTER_IDENT_ID \
+--role "Contributor" \
+--scope "$RG_ID"
+
+# Create a new managed identity
+az identity create \
+--name kubeletidentity \
+--resource-group $RG
 ```
+
