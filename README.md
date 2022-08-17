@@ -30,9 +30,9 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Alerting
     * Logging (eg - Fluentd)
     * Tracing / App Insights   
-* Networking (Steve)
-    * Ingress
-    * Network Policy 
+* Networking
+    * [Ingress](docs/ingress.md)
+    * [Network Policy](docs/network-policy.md)
 * [Image Management / Container Registry](./docs/container-registry.md) (Brian)
     * Bring images into ACR 
     * Image Security
