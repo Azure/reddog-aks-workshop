@@ -20,7 +20,7 @@ You were asked to complete the following tasks:
    
     **Bonus Tasks:**
 7. Enable Automatic Uprades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
-8. Ubuntu will automatically apply some patches to the OS which require reboot. Enable automated node patch reboots with [Kured](https://docs.microsoft.com/en-us/azure/aks/node-updates-kured)
+
 
 ### Increase the Red Dog UI deployment replica count to 2
 
@@ -307,3 +307,4 @@ timeInWeek:
   - 1
 type: null
 ```
+

@@ -29,7 +29,7 @@ Make sure the following are complete before setting up ingress.
 
     **Bonus Tasks:**
 7. Enable Automatic Uprades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
-8. Ubuntu will automatically apply some patches to the OS which require reboot. Enable automated node patch reboots with [Kured](https://docs.microsoft.com/en-us/azure/aks/node-updates-kured)
+
 
 **Useful links:**
 
@@ -40,5 +40,4 @@ Make sure the following are complete before setting up ingress.
 * [Kubernetes Pod Disruption Budgets](https://kubernetes.io/docs/tasks/run-application/configure-pdb/)
 * [Node Surge](https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster?tabs=azure-cli#customize-node-surge-upgrade)
 * [AKS Auto Upgrade](https://docs.microsoft.com/en-us/azure/aks/auto-upgrade-cluster)
-* [Kured](https://github.com/weaveworks/kured)
   
