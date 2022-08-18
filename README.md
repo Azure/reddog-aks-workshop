@@ -42,7 +42,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * HPA / KEDA
 * AKS Cluster Management (Steve)
     * [Upgrade planning](./docs/cluster-upgrades.md)
-    * Azure Policy
+    * [Azure Policy](docs/cluster-policy.md)
 * Service Mesh (Brian - use Buoyant content)
 * Storage (Joey)
 
