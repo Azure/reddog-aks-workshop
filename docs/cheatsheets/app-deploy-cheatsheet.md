@@ -1,19 +1,19 @@
 ## App Deployment Cheatsheet
 
 ```bash
-export RG=RedDogAKSWorkshop
-export LOC=eastus
-export SB_NAMESPACE=reddogsb
-export VNET_NAME=reddog-vnet
+RG=RedDogAKSWorkshop
+LOC=eastus
+VNET_NAME=reddog-vnet
 let "randomIdentifier=$RANDOM*$RANDOM"
-export SQLSERVER="$randomIdentifier-azuresql-server"
-export SQLDB="reddog"
-export SQLLOGIN='azureuser'
-export SQLPASSWORD='w@lkingth3d0g'
+SB_NAMESPACE="reddogsb$randomIdentifier"
+SQLSERVER="$randomIdentifier-azuresql-server"
+SQLDB="reddog"
+SQLLOGIN='azureuser'
+SQLPASSWORD='w@lkingth3d0g'
 # Get your current IP
-export MYIP=$(curl icanhazip.com)
-export REDIS_PASSWD='w@lkingth3d0g'
-export REDIS_SERVER='redis-release-master.redis.svc.cluster.local:6379'
+MYIP=$(curl icanhazip.com)
+REDIS_PASSWD='w@lkingth3d0g'
+REDIS_SERVER='redis-release-master.redis.svc.cluster.local:6379'
 
 # Deploy Azure Service Bus
 az servicebus namespace create --resource-group $RG --name $SB_NAMESPACE --location $LOC
@@ -74,8 +74,6 @@ kubectl create secret generic reddog.secrets \
 kubectl create secret generic reddog-sql \
     --namespace reddog \
     --from-literal=reddog-sql="$SQL_CONNECTION_STRING"
-
-
 
 # Deploy Red Dog Dapr configs
 kubectl apply -f ./manifests/workshop/dapr-components

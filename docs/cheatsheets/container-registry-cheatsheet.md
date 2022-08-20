@@ -1,10 +1,10 @@
 ## Image Management / Container Registry Cheatsheet
 
 ```bash
-export RG=RedDogAKSWorkshop
-export LOC=eastus
-export ACRNAME=briarreddogacr # must be globally unique
-export KUBELET_IDENTITY_NAME=kubeletidentity #created in a prior step
+RG=RedDogAKSWorkshop
+LOC=eastus
+ACRNAME=briarreddogacr # must be globally unique
+KUBELET_IDENTITY_NAME=kubeletidentity #created in a prior step
 
 # create the ACR
 az acr create --resource-group $RG --name $ACRNAME --sku Standard
@@ -25,7 +25,5 @@ docker tag ghcr.io/azure/reddog-retail-demo/reddog-retail-accounting-service:lat
 docker push $ACRNAME.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest 
 
 # setup automated image scanning (add this later)
-
-
 
 ```
