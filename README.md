@@ -33,17 +33,17 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Networking
     * [Ingress](docs/ingress.md)
     * [Network Policy](docs/network-policy.md)
-* [Image Management / Container Registry](./docs/container-registry.md) (Brian)
+* [Image Management / Container Registry](./docs/container-registry.md)
     * Bring images into ACR 
     * Image Security
-* [CI/CD & GitOps](./docs/cicd-gitops.md) (Brian)
+* [CI/CD & GitOps](./docs/cicd-gitops.md)
 * Autoscaling (Steve)
     * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
     * HPA / KEDA
-* AKS Cluster Management (Steve)
+* AKS Cluster Management
     * [Upgrade planning](./docs/cluster-upgrades.md)
     * [Azure Policy](docs/cluster-policy.md)
-* Service Mesh (Brian - use Buoyant content)
+* [Service Mesh](docs/service-mesh.md)
 * Storage (Joey)
 
 
