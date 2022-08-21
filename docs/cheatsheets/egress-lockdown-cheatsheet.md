@@ -10,9 +10,9 @@ In egress lockdown, you were given the following requirements:
     |Address |Protocol |Ports |
     | ---- | ---- | ---- |
     |AzureCloud.\<region\>|UDP|1194|
-    |AzureCloud.\<region\>|TCP|9000|
+    |AzureCloud.\<region\>|TCP|9000, 443|
     |ntp.ubuntu.com|UDP|123|
-    |AzureKubernetesService|TCP|80,443|
+    |AzureKubernetesService|TCP|80, 443|
 
 You were asked to complete the following tasks:
 
@@ -66,7 +66,7 @@ az network firewall network-rule create \
 -g $RG \
 -f $FIREWALLNAME \
 --collection-name 'aksfwnr' \
--n 'apiudp' \
+-n 'aksapiudp' \
 --protocols 'UDP' \
 --source-addresses '*' \
 --destination-addresses "AzureCloud.$LOC" \
@@ -76,11 +76,11 @@ az network firewall network-rule create \
 -g $RG \
 -f $FIREWALLNAME \
 --collection-name 'aksfwnr' \
--n 'apitcp' \
+-n 'aksapitcp' \
 --protocols 'TCP' \
 --source-addresses '*' \
 --destination-addresses "AzureCloud.$LOC" \
---destination-ports 9000
+--destination-ports 9000 443
 
 az network firewall network-rule create \
 -g $RG \
@@ -91,6 +91,7 @@ az network firewall network-rule create \
 --source-addresses '*' \
 --destination-fqdns 'ntp.ubuntu.com' \
 --destination-ports 123
+
 
 # Add FW Application Rules
 az network firewall application-rule create \
@@ -176,3 +177,75 @@ az network firewall application-rule create \
 --target-fqdns archive.ubuntu.com security.ubuntu.com \
 --action allow --priority 102
 ```
+
+### Azure Marketplace
+
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'azrmktplc' \
+-n 'azrmarketplace' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns marketplace.azurecr.io marketplaceeush.cdn.azcr.io \
+--action allow --priority 103
+```
+
+### GitHub Registry (RedDog Registry)
+
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'githubcr' \
+-n 'github' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns ghcr.io pkg-containers.githubusercontent.com \
+--action allow --priority 104
+```
+
+
+### K8s Registry (Ingress Nginx Registry)
+
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'k8scr' \
+-n 'k8scr' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns registry.k8s.io k8s.gcr.io storage.googleapis.com \
+--action allow --priority 105
+```
+
+### Service Bus Endpoint
+
+```bash
+az network firewall network-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'aksfwnr' \
+-n 'svcbus' \
+--protocols 'TCP' \
+--source-addresses '*' \
+--destination-fqdns 'ServiceBus' \
+--destination-ports 5671
+```
+
+### SQL Server Endpoint
+
+```bash
+az network firewall network-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'aksfwnr' \
+-n 'sqltcp' \
+--protocols 'TCP' \
+--source-addresses '*' \
+--destination-addresses  "Sql" \
+--destination-ports 1433 11000-11999
+```
+

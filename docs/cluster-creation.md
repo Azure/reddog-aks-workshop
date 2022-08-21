@@ -1,12 +1,12 @@
 # Cluster Creation Overview
 
-In previous steps you should have created the network foundation for your cluster, including the Azure Firewall and rules required by AKS. You also created identities for the cluster and kublet. Now you'll need to bring those together in creation of an AKS cluster.
+In previous steps you should have created the network and identity foundations for your cluster. You may have also set up the infrastructure for egress lockdown, including the Azure Firewall and rules required by AKS. Now it's time to bring those together in creation of an AKS cluster.
 
 ## AKS Cluster Requirements
 
 * The organization has limited available IP space, so you'll need to choose the AKS network plug-in that will use the fewest private IP addresses
 * The cluster must be created in the 'aks' subnet you created previously
-* The cluster should be configured so that outbound traffic uses the route table you've created which forces internet traffic to the Azure Firewall
+* **If you followed the egress lockdown path**, the cluster should be configured so that outbound traffic uses the route table you've created which forces internet traffic to the Azure Firewall, otherwise you can use the default cluster egress model.
 * The cluster should use the following address spaces:
     * Pod CIDR: 10.244.0.0/16
     * Service CIDR: 10.245.0.0/24
@@ -32,3 +32,7 @@ In previous steps you should have created the network foundation for your cluste
 * [Azure Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview)
 * [Using Managed Identities with AKS](https://docs.microsoft.com/en-us/azure/aks/use-managed-identity)
 * [AKS User and System Pools](https://docs.microsoft.com/en-us/azure/aks/use-system-pools?tabs=azure-cli)
+
+### Next:
+
+[App Deploy](app-deployment.md)

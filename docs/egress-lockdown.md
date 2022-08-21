@@ -15,9 +15,9 @@ Controlling the flow of traffic leaving the cluster, in particular to the public
     |Address |Protocol |Ports |
     | ---- | ---- | ---- |
     |AzureCloud.\<region\>|UDP|1194|
-    |AzureCloud.\<region\>|TCP|9000|
+    |AzureCloud.\<region\>|TCP|9000, 443|
     |ntp.ubuntu.com|UDP|123|
-    |AzureKubernetesService|TCP|80,443|
+    |AzureKubernetesService|TCP|80, 443|
 
 ## Task:
 
