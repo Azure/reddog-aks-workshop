@@ -24,11 +24,10 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Resource requirements (CPU, memory, etc.)
     * Secret/Config management
     * Health probes
-* Monitoring / Logging (Joey)
+* [Monitoring / Logging](./docs/monitoring.md)
     * Azure Monitor
     * Prometheus / Grafana
     * Alerting
-    * Logging (eg - Fluentd)
     * Tracing / App Insights   
 * Networking
     * [Ingress](docs/ingress.md)
@@ -44,7 +43,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * [Upgrade planning](./docs/cluster-upgrades.md)
     * [Azure Policy](docs/cluster-policy.md)
 * [Service Mesh](docs/service-mesh.md)
-* Storage (Joey)
+<!-- * Storage (Joey) -->
 
 
 
