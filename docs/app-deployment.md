@@ -81,6 +81,8 @@ The YAML files needed to deploy Red Dog are provided in this repo (manifests fol
 1. Deploy the above pre-requisites in your AKS cluster
 2. Create 2 secrets in your AKS cluster with the necessary creds as above
 3. Update the Red Dog manifests and deploy everything into your AKS cluster
+4. Add resource requests/limits for one of the services (order-service)
+5. Add a health check for one of the services
 
 When the deploy is successful, you should see the following in the cluster and the UI:
 

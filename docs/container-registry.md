@@ -15,6 +15,14 @@ At this point, you should have an AKS cluster fully deployed and the Red Dog app
 ## Image Security Requirements
 
 * Automate image scanning to ensure any images created for the app are properly scanned for vulnerabilities
+    * Multiple options for this scenario:
+        * Microsoft Defender for Containers. https://docs.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-enable
+        * Qualys. https://www.qualys.com 
+        * Aqua Security. https://www.aquasec.com 
+        * Twistlock (Prisma)
+        * Anchore. https://anchore.com
+            * Grype (OSS). https://github.com/anchore/grype
+        * Falco. https://falco.org
 * Read details on Private Endpoints with ACR. For this workshop, we will be setting up GitHub Actions and this step should be skipped (for simplicity)
 
 

@@ -39,6 +39,7 @@ The goal in this module is to create a pipeline that will auto create container 
     > Note: The manifest files in the workshop use the `latest` tag. For this to work, these tags would need to be changed to a specific tag and updated in the CI/CD pipeline
     > Note: If you're using Egress Lockdown, you will need to ensure the Flux agents can access the source repo. https://docs.microsoft.com/en-us/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#network-requirements
 8. Test everything end to end. You can update a random line of code and push to your fork to trigger the workflow. If you're successful, you will see a new pod deployment with your updated image.
+9. (OPTIONAL) Add automated image scanning to CI/CD process. https://docs.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-cicd
  
 **Useful links:**
 

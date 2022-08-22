@@ -90,6 +90,9 @@ kubectl apply -f ./manifests/workshop/reddog-services/virtual-customers.yaml
 kubectl apply -f ./manifests/workshop/reddog-services/services-for-ui.yaml
 kubectl apply -f ./manifests/workshop/reddog-services/ui.yaml
 
+# Test deployment with resource requests/limits
+kubectl apply -f ./manifests/workshop-cheatsheet/reddog-services/order-service.yaml
+
 # NSG's - Note that Microsoft Corp Security blocks all in/out traffic with an NSG (need to add rules)
 
 ```

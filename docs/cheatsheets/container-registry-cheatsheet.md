@@ -24,6 +24,21 @@ docker tag ghcr.io/azure/reddog-retail-demo/reddog-retail-accounting-service:lat
 
 docker push $ACRNAME.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest 
 
-# setup automated image scanning (add this later)
+# update manifest and test image deployment
+# Eg: $ACRNAME.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest
+
+kubectl apply -f ./manifests/workshop-cheatsheet/reddog-services/accounting-service.yaml
+
+# container Image Scanning - Quick local scan (open source)
+
+docker run --rm \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+--name Grype anchore/grype:latest \
+briarreddogacrnew.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest
+
+# container Image Scanning - Microsoft Defender for Containers
+https://docs.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-enable
+
+
 
 ```
