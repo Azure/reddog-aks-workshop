@@ -14,6 +14,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 
 ## Workshop Modules
 
+
 * [Environment Preparation (Start here)](./docs/environment-prep.md)
     * Network Planning
     * Identity Planning
