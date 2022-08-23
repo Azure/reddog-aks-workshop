@@ -7,7 +7,7 @@ At this point, you should have an AKS cluster fully deployed and the Red Dog app
 
 ## Azure Monitor Requirements
 
-> Azure Monitor / Log Analytics Workspaceresource should reside in your resource group and in the same Azure region.
+> Azure Monitor / Log Analytics Workspace resource should reside in your resource group and in the same Azure region.
 
 ## Tasks:
 
