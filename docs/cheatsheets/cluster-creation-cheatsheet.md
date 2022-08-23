@@ -84,7 +84,8 @@ az aks create \
 --outbound-type userDefinedRouting \
 --enable-managed-identity \
 --assign-identity $CLUSTER_IDENTITY_ID \
---assign-kubelet-identity $KUBELET_IDENTITY_ID
+--assign-kubelet-identity $KUBELET_IDENTITY_ID \
+--generate-ssh-keys
 ```
 
 ### Connect to the Cluster

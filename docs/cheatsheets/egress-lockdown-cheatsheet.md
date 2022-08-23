@@ -231,7 +231,7 @@ az network firewall network-rule create \
 -n 'svcbus' \
 --protocols 'TCP' \
 --source-addresses '*' \
---destination-fqdns 'ServiceBus' \
+--destination-addresses  "ServiceBus" \
 --destination-ports 5671
 ```
 
