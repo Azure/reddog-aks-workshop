@@ -23,6 +23,9 @@ linkerd check
 kubectl get -n reddog deploy -o yaml | linkerd inject - | kubectl apply -f -
 
 # linkerd dashboard
-linkerd viz install | kubectl apply -f - # install the on-cluster metrics stack
+# install the on-cluster metrics stack
+linkerd viz install | kubectl apply -f - 
+
+linkerd viz dashboard &
 
 ```
