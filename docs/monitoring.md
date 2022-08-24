@@ -13,7 +13,7 @@ At this point, you should have an AKS cluster fully deployed and the Red Dog app
 
 **Azure Monitor**
 1. Create a log analytics workspace
-2. Enable container insights on your cluster with aforementioned workspaceid
+2. Enable container insights on your cluster with aforementioned WorkspaceId
 
 _OPTIONAL TASKS_
 
