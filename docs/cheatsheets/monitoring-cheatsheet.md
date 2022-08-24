@@ -23,7 +23,7 @@ az aks enable-addons -a monitoring \
 
 #### _Prometheus & Grafana_
 
-### Install Kube Prometheus
+*Install Kube Prometheus*
 
 The first step in getting our Windows node metrics into Prometheus and Grafana is to install the Kube Prometheus project into our cluster. We'll do this using the manifests published by the Kube Prometheus project.
 
