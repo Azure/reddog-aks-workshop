@@ -12,7 +12,7 @@ In previous steps you should have created the network and identity foundations f
     * Service CIDR: 10.245.0.0/24
     * DNS Service IP: 10.245.0.10
 * The cluster should use the cluster and kubelet identities you've already created
-* The cluster should be configured to use 'Calico' Kubernetes Network Policy
+* The cluster should be configured to use 'calico' Kubernetes Network Policy
 * The cluster should have both a 'System' and 'User' mode nodepool
 * The initial pool created will be the system pool and should be called 'systempool'
 * The 'System' mode pool should be tainted to only allow system pods
