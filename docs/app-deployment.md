@@ -53,9 +53,14 @@ Two secrets are required to deploy the app (everything must be created in the `r
     * SQL Connect String (key: `reddog-sql`)
 
         ```bash
+        SQLSERVER=YOUR_SQL_HOSTNAME_GOES_HERE
+        SQLLOGIN=YOUR_SQL_USERNAME_GOES_HERE
+        SQLPASSWORD=YOUR_SQL_PASSWORD_GOES_HERE
         SQL_CONNECTION_STRING="Server=tcp:${SQLSERVER}.database.windows.net,1433;Database=reddog;User ID=${SQLLOGIN};Password=${SQLPASSWORD};Encrypt=true;Connection Timeout=30;"
 
-        # use a kubectl create secret command similar to above
+         kubectl create secret generic reddog-sql \
+            --namespace reddog-retail \
+            --from-literal=reddog-sql="$SQL_CONNECTION_STRING"
         ```
 
 ## Application Requirements
