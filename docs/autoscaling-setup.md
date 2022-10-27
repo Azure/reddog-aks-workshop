@@ -18,7 +18,7 @@ Familiarize yourself with the HPA, Cluster Autoscaler and Azure Load Testing, re
 
 ## Tasks:
 
-1. Setup an Azure Load Testing instance to test the performance of the application: [Auto-Scaling with Horizontal Pod Autoscaler and Cluster Autoscaler](https://github.com/ulkeba/aks-baseline_walkthroughs/tree/main/scaling_aks-lza)
+1. Setup an Azure Load Testing instance to test the performance of the application: [Auto-Scaling with Horizontal Pod Autoscaler and Cluster Autoscaler](https://github.com/Azure/AKS-Landing-Zone-Accelerator/tree/main/Scenarios/Testing-Scalability)
 1. Configure autoscaling for all nodepools based on the requirements above
 1. Validate pod autoscaling is working
 1. Validate cluster autoscaling is working
