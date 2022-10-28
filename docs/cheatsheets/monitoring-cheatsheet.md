@@ -29,33 +29,33 @@ The first step in getting our Windows node metrics into Prometheus and Grafana i
 
 *Clone the Kube Prometheus repository*
 
-    ```bash
+```bash
     git clone https://github.com/prometheus-operator/kube-prometheus.git
-    ```
+```
 
 To make sure you're running the right version, check the [version compatibility table](https://github.com/prometheus-operator/kube-prometheus#compatibility) and then git checkout the right branch for your specific Kubernetes version. 
 
-    ```bash
+```bash
     # Looking at the compatibility matrix I can see that Kubernetes 1.23 is compatible with Kube Prometheus release-0.10
 
     # Checkout the release-0.10 branch
     git checkout release-0.10
     Switched to branch 'release-0.10'
     Your branch is up to date with 'origin/release-0.10'.
-    ```
+```
 
 Now we can follow the documented installation steps from the Kube Prometheus project
 
-    ```bash
+```bash
     # Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
     kubectl apply --server-side -f manifests/setup
     until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
     kubectl apply -f manifests/
-    ```
+```
 
 Check the status of your deployment
 
-    ```bash
+```bash
     kubectl get svc,pods -n monitoring
     NAME                            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
     service/alertmanager-main       ClusterIP   10.0.208.250   <none>        9093/TCP,8080/TCP            4h34m
@@ -83,28 +83,19 @@ Check the status of your deployment
     pod/prometheus-k8s-0                       2/2     Running   0          4h30m
     pod/prometheus-k8s-1                       2/2     Running   0          4h30m
     pod/prometheus-operator-6dc9f66cb7-8wc6p   2/2     Running   0          4h33m
-    ```
+```
 
 Now lets test connectivity to the Prometheus and Grafana dashboards. They're deployed as 'Cluster IP' services, so we can either modify them to be type 'LoadBalancer' or we can use a port-forward. We'll port-forward for now.
 
-    ```bash
+```bash
     kubectl port-forward service/grafana -n monitoring 3000:3000
     Forwarding from 127.0.0.1:3000 -> 3000
     Forwarding from [::1]:3000 -> 3000
-    ```
+```
 
 Navigate your browser to http://localhost:3000
    
 Enter the userid and password (admin:admin) and then follow the prompts to reset the admin password
 
 
-Click on the '/Node Exporter/USE Method/Cluster' dashboard, and notice that the data is only sourced from the linux nodes
-
-
-
-
-
-
-
-
-
+Click on the '/Node Exporter/USE Method/Cluster' dashboard, and notice that the data is only sourced from the linux nodes.
