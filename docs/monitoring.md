@@ -17,7 +17,7 @@ At this point, you should have an AKS cluster fully deployed and the Red Dog app
 
 _OPTIONAL TASKS_
 
-**Promethus & Grafana**
+**Prometheus & Grafana**
 1. Install/Deploy Prometheus/Grafana 
 2. Apply the privileged pod policy at the cluster level
 3. Test the policy is operating as expected
