@@ -18,7 +18,7 @@ Familiarize yourself with the HPA, Cluster Autoscaler and Azure Load Testing, re
 
 ## Tasks:
 
-1. Setup an Azure Load Testing instance to test the performance of the application: [Auto-Scaling with Horizontal Pod Autoscaler and Cluster Autoscaler](https://github.com/Azure/AKS-Landing-Zone-Accelerator/tree/main/Scenarios/Testing-Scalability)
+1. Use a tool to generate load (e.g.: Apache Benchmark, jMeter, wrk, Azure Load Testing) to test the performance of the application.
 1. Configure autoscaling for all nodepools based on the requirements above
 1. Validate pod autoscaling is working
 1. Validate cluster autoscaling is working
@@ -34,3 +34,4 @@ Familiarize yourself with the HPA, Cluster Autoscaler and Azure Load Testing, re
 * [Reserve Compute Resources for System Daemons](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/)
 * [Safely Drain a Node](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/)
 * [Quickstart: Create and run a load test with Azure Load Testing Preview](https://docs.microsoft.com/en-us/azure/load-testing/quickstart-create-and-run-load-test)
+* [Auto-Scaling with Horizontal Pod Autoscaler and Cluster Autoscaler](https://github.com/Azure/AKS-Landing-Zone-Accelerator/tree/main/Scenarios/Testing-Scalability)

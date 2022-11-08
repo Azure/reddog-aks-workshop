@@ -14,7 +14,6 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 
 ## Workshop Modules
 
-
 * [Environment Preparation (Start here)](./docs/environment-prep.md)
     * Network Planning
     * Identity Planning
@@ -37,7 +36,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Bring images into ACR 
     * Image Security
 * [CI/CD & GitOps](./docs/cicd-gitops.md)
-* Autoscaling (Steve)
+* Autoscaling
     * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
     * HPA / KEDA
 * AKS Cluster Management

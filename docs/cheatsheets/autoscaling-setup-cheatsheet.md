@@ -32,7 +32,7 @@ RG=RedDogAKSWorkshop
 CLUSTER_NAME=reddog-griffith
 
 # First get the nodepool names
-z aks nodepool list -g $RG --cluster-name $CLUSTER_NAME
+aks nodepool list -g $RG --cluster-name $CLUSTER_NAME
 Name        OsType    KubernetesVersion    VmSize           Count    MaxPods    ProvisioningState    Mode
 ----------  --------  -------------------  ---------------  -------  ---------  -------------------  ------
 systempool  Linux     1.22.11              Standard_DS2_v2  3        110        Succeeded            System
