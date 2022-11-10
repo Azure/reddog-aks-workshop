@@ -86,7 +86,7 @@ spec:
               kubernetes.io/metadata.name: ingress
 ```
 
-Create you're own manifests using the above and apply to the reddog namespace, or apply as follows from the repo:
+Create your own manifests using the above and apply to the reddog namespace, or apply as follows from the repo:
 
 ```bash
 kubectl apply -f ../../manifests/workshop-cheatsheet/network-policy/reddog-default-deny-ingress.yaml

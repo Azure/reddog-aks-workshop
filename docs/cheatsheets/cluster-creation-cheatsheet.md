@@ -158,4 +158,11 @@ az aks nodepool update \
 --cluster-name $CLUSTER_NAME \
 --name systempool \
 --node-taints CriticalAddonsOnly=true:NoSchedule
+
+# Check that the tain has been applied to the default nodepool
+az aks nodepool update \
+--resource-group $RG \
+--cluster-name $CLUSTER_NAME \
+--name systempool \
+--query nodeTaints
 ```

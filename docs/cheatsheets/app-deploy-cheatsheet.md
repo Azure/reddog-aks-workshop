@@ -18,7 +18,7 @@ REDIS_SERVER='redis-release-master.redis.svc.cluster.local:6379'
 # Deploy Azure Service Bus
 az servicebus namespace create --resource-group $RG --name $SB_NAMESPACE --location $LOC
 
-https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-cli
+# https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-cli
 
 # Deploy Azure SQL, Database, and Firewall rule
 az sql server create --name $SQLSERVER --resource-group $RG --location $LOC --admin-user $SQLLOGIN --admin-password $SQLPASSWORD
@@ -34,7 +34,7 @@ az sql server firewall-rule create --resource-group $RG --server $SQLSERVER -n A
 
 az sql db create --resource-group $RG --server $SQLSERVER --name $SQLDB --edition GeneralPurpose --family Gen5 --capacity 2 --zone-redundant false
 
-https://docs.microsoft.com/en-us/azure/azure-sql/database/scripts/create-and-configure-database-cli?view=azuresql
+# https://docs.microsoft.com/en-us/azure/azure-sql/database/scripts/create-and-configure-database-cli?view=azuresql
 
 # Deploy Redis (Helm)
 helm repo add dapr https://dapr.github.io/helm-charts
@@ -120,7 +120,7 @@ virtual-worker-dapr       ClusterIP      None           <none>           80/TCP,
 # In your browser, given the above, you'd navigate to http://20.237.123.135/
 ```
 
-If you **DID** follow the egress lockdown path, things are a bit more compicated. The easy way to connect to the UI is with a kubectl port-forward, to map a port on your local machine to the service.
+If you **DID** follow the egress lockdown path, things are a bit more complicated. The easy way to connect to the UI is with a kubectl port-forward, to map a port on your local machine to the service.
 
 > **NOTE:**
 > Port forwards will not work in cloud shell. You need to do them from your local machine.

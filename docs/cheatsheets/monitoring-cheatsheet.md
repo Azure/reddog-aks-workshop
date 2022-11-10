@@ -6,20 +6,18 @@
 ```bash
 WORKSPACEID=$(az monitor \
 log-analytics workspace create \
--g CLUSTER-RG \
+-g $RG \
 -n WORKSPACE-NAME \
-| jq '.id')
+| jq '.id' -r)
 ```
 
 *Enable Azure Container Insights on your cluster*
 ```bash
 az aks enable-addons -a monitoring \
--n CLUSTERNAME \
--g CLUSTER-RG \ 
+-n $CLUSTER_NAME \
+-g $RG \
 --workspace-resource-id $WORKSPACEID
 ```
-
-
 
 #### _Prometheus & Grafana_
 
@@ -39,7 +37,12 @@ To make sure you're running the right version, check the [version compatibility 
     # Looking at the compatibility matrix I can see that Kubernetes 1.23 is compatible with Kube Prometheus release-0.10
 
     # Checkout the release-0.10 branch
+    cd kube-prometheus
     git checkout release-0.10
+```
+
+Here is a sample output
+```bash
     Switched to branch 'release-0.10'
     Your branch is up to date with 'origin/release-0.10'.
 ```
@@ -98,4 +101,4 @@ Navigate your browser to http://localhost:3000
 Enter the userid and password (admin:admin) and then follow the prompts to reset the admin password
 
 
-Click on the '/Node Exporter/USE Method/Cluster' dashboard, and notice that the data is only sourced from the linux nodes.
+Click on the '/Node Exporter/USE Method/Cluster' dashboard, and notice that the data is only sourced from the Linux nodes.

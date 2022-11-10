@@ -21,6 +21,7 @@ You were asked to complete the following tasks:
 You were given the requirement to use ingress-nginx, which fortunately is the same ingress controller used in the AKS documentation for ingress setup, so we can just follow that. 
 
 > **NOTE**
+>
 > If you followed the egress lockdown approach you'll need to follow the steps for setting up the ingress controller with a private IP and will then need to set up a public IP on the firewall for the ingress traffic. This is a standard networking requirement for forced traffic flows. There are various alternative solutions, but ultimately the path traffic takes into the cluster needs to be the path that traffic flows out of the cluster, and our forced egress route (0.0.0.0/0 next hop to the firewall) leads us to need to be more careful with the ingress path as well.
 
 <br/>
@@ -29,6 +30,7 @@ You were given the requirement to use ingress-nginx, which fortunately is the sa
 
 
 > **NOTE**
+>
 > Don't forget that any new images registries you pull from need to be allowed through the firewall. 
 > The repository holding the ingress-nginx images is listed in the egress lockdown cheatsheet.
 
@@ -97,6 +99,7 @@ Now that your ingress is running you can access the site at http://\<svc externa
 <u>**Egress Lockdown Approach**</u>
 
 > **NOTE**
+>
 > Don't forget that any new images registries you pull from need to be allowed through the firewall. 
 > The repository holding the ingress-nginx images is listed in the egress lockdown cheatsheet.
 
