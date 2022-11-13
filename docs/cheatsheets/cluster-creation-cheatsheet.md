@@ -51,7 +51,7 @@ KUBELET_IDENTITY_ID=$(az identity show -g $RG -n $KUBELET_IDENTITY_NAME -o tsv -
 Given the requirements we will set the following in our cluster creation command:
 
 * Our cluster creation command will specify a target Vnet/Subnet
-* We'll choose [kubenet](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet) as the network plugin, as it requires the list IP space
+* We'll choose [kubenet](https://docs.microsoft.com/en-us/azure/aks/configure-kubenet) as the network plugin, as it requires the least IP space
 * Configure the cluster egress model:
   * **If you followed the egress lockdown path**, set the 'OutboundType' to use 'UserDefinedRouting'
   * **If you didn't follow the egress lockdown path**, set the 'OutboundType' to use 'LoadBalancer', or don't set it at all as this is the default value
