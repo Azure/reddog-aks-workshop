@@ -73,7 +73,7 @@ kubectl create secret generic reddog.secrets \
 
 kubectl create secret generic reddog-sql \
     --namespace reddog \
-    --from-literal="$SQL_CONNECTION_STRING"
+    --from-literal=reddog-sql="$SQL_CONNECTION_STRING"
 
 # Deploy Red Dog Dapr configs
 kubectl apply -f ./manifests/workshop/dapr-components
