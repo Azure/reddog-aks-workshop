@@ -178,6 +178,19 @@ az network firewall application-rule create \
 --action allow --priority 102
 ```
 
+### Alpine Apk
+```bash
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'aksfwnr' \
+-n 'alpine-apk' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns dl-cdn.alpinelinux.org \
+--action allow --priority 102
+```
+
 ### Azure Marketplace
 
 ```bash
@@ -248,4 +261,3 @@ az network firewall network-rule create \
 --destination-addresses  "Sql" \
 --destination-ports 1433 11000-11999
 ```
-
