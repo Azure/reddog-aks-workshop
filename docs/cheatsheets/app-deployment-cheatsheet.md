@@ -127,7 +127,7 @@ If you **DID** follow the egress lockdown path, things are a bit more complicate
 
 ```bash
 # Forward local port 8080 to the service port 80
-kubectl port-forward svc/ui 8080:80
+kubectl port-forward svc/ui 8080:80 -n reddog
 Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 
