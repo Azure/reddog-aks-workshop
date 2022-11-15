@@ -6,13 +6,13 @@
 
 Red Dog Overview:
 
-* Red Dog is a series of microservices that support a ficticious Retail Company 
+* Red Dog is a series of microservices that support a fictitious Retail Company 
 * Each microservice runs as a container and is planned for Kubernetes in Azure
 * This is an event driven architecture using Azure Service Bus for pub/sub
 * Redis Cache is used to store state for some of the services
 * Azure SQL is used to store the full order history
 * The UI Dashboard shows the current activity of the business
-* There are 2 background services used to simulate activity. Virtual Customer creates orders and Virtual Worker processes and fullfills orders
+* There are 2 background services used to simulate activity. Virtual Customer creates orders and Virtual Worker processes and fulfills orders
 * The services use the Distributed Application Runtime [(Dapr)](http://dapr.io) as a sidecar for various actions
 
 ## Application Pre-requisites
@@ -84,7 +84,7 @@ The YAML files needed to deploy Red Dog are provided in this repo (manifests fol
 ## Tasks:
 
 1. Deploy the above pre-requisites in your AKS cluster
-2. Create 2 secrets in your AKS cluster with the necessary creds as above
+2. Create 2 secrets in your AKS cluster with the necessary credentials as above
 3. Update the Red Dog manifests and deploy everything into your AKS cluster
 4. Add resource requests/limits for one of the services (order-service)
 5. Add a health check for one of the services
