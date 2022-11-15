@@ -280,4 +280,4 @@ Retrieving your secret from griffith-kv.
 Your secret is 'Hello from key vault'.
 ```
 
-You now have a cluster enabled with the OIDC Issure and the Azure Workload Identity managed add-on with a deployed application using a Kubernetes Service Account that has been federated to an Azure Managed Identity to access a secret in an Azure Key Vault!
+You now have a cluster enabled with the OIDC Issuer and the Azure Workload Identity managed add-on with a deployed application using a Kubernetes Service Account that has been federated to an Azure Managed Identity to access a secret in an Azure Key Vault!
