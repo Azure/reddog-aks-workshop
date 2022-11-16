@@ -32,21 +32,22 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
 * Networking
     * [Ingress](docs/ingress.md)
     * [Network Policy](docs/network-policy.md)
-* [Image Management / Container Registry](./docs/container-registry.md)
+* [Image Management / Container Registry](docs/container-registry.md)
     * Bring images into ACR 
     * Image Security
-* [CI/CD & GitOps](./docs/cicd-gitops.md)
+* [CI/CD & GitOps](docs/cicd-gitops.md)
 * Identity and Key Vault
-    * [AKS Workload Identity](./docs/workload-identity.md)
-    * [Key Vault Provider (CSI Driver)](./docs/key-vault-csi-driver.md)
+    * [AKS Workload Identity](docs/workload-identity.md)
+    * [Key Vault Provider (CSI Driver)](docs/key-vault-csi-driver.md)
 * Autoscaling
-    * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
+    * [Cluster and node autoscaler](/docs/autoscaling-setup.md)
     * HPA / KEDA
 * AKS Cluster Management
-    * [Upgrade planning](./docs/cluster-upgrades.md)
+    * [Upgrade planning](/docs/cluster-upgrades.md)
     * [Azure Policy](docs/cluster-policy.md)
 * [Service Mesh](docs/service-mesh.md)
-<!-- * Storage (Joey) -->
+* Troubleshooting (Coming soon)
+* Storage (Coming soon)
 
 
 
