@@ -134,4 +134,4 @@ Forwarding from [::1]:8080 -> 8080
 # In your browser you'd navigate to http://localhost:8080/
 ```
 
-At this point you should see the page load. If the tables and charts arent loading, consider checking your firewall rules to make sure Azure Service Bus and Azure SQL are permitted to egress on their respective ports.
+At this point you should see the page load. If the tables and charts aren't loading, consider checking your firewall rules to make sure Azure Service Bus and Azure SQL are permitted to egress on their respective ports.

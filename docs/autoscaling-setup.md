@@ -1,6 +1,6 @@
 # Autoscaling Setup
 
-One of the critical capabilities of any container orchestrator is the ability to automatically scale both your application and the hosting enviornment itself. AKS handles this through the combination of the Kubernetes [Horizontal Pod Autoscaler(HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) and the AKS [Cluster Autoscaler](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler). 
+One of the critical capabilities of any container orchestrator is the ability to automatically scale both your application and the hosting environment itself. AKS handles this through the combination of the Kubernetes [Horizontal Pod Autoscaler(HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) and the AKS [Cluster Autoscaler](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler). 
 
 To emulate user load, this workshop recommends the use of [Azure Load Testing](https://docs.microsoft.com/en-us/azure/load-testing/overview-what-is-azure-load-testing).
 

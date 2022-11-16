@@ -95,7 +95,7 @@ kubectl apply -f ../../manifests/workshop-cheatsheet/network-policy/reddog-ns-al
 
 ### Test your changes
 
-You can test access to the UI via either the ingress endpoint, if you completed the [ingress controll](ingress-cheatsheet.md) setup. If you didn't complete the ingress setup, you can just use a port forward as shown below:
+You can test access to the UI via either the ingress endpoint, if you completed the [ingress control](ingress-cheatsheet.md) setup. If you didn't complete the ingress setup, you can just use a port forward as shown below:
 
 ```bash
 kubectl port-forward svc/ui 8080:80

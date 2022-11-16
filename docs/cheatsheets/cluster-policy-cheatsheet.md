@@ -16,7 +16,7 @@ You were asked to complete the following tasks:
 ### Enable Policy on the AKS Cluster
 
 ```bash
-# First ensure that the addon isnt already installed
+# First ensure that the addon isn't already installed
 # Some organizations have it enabled by default in their enterprise wide Azure Policy
 az aks addon list -g $RG -n $CLUSTER_NAME
 
@@ -52,7 +52,7 @@ azure-policy-webhook-854ffcbfdb-m47l9                1/1     Running   0        
 
 ### Apply the privileged pod policy at the cluster level
 
-First you should test that you ARE able to create a priviledged pod, before enabling the policy.
+First you should test that you ARE able to create a privileged pod, before enabling the policy.
 
 ```bash
 # Create the pod inline, or use the manifest below to create a yaml file and deploy that

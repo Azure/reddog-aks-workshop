@@ -24,4 +24,4 @@ Make sure the following are complete before setting up network policies.
 
 * [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 * [AKS Network Policies](https://docs.microsoft.com/en-us/azure/aks/use-network-policies)
-* [Cillium Network Policy Editor](https://editor.cilium.io/)
+* [Cilium Network Policy Editor](https://editor.cilium.io/)

@@ -1,6 +1,6 @@
 # Cluster Upgrades
 
-Kubernetes frequenly gets patches and upgrades, addressing security vulnerabilities and adding new functionality. Additionally, AKS releases patches for the underlying node operating system on a regular basis (aka Node Image Updates). You need to implement a process to upgrade the cluster.
+Kubernetes frequently gets patches and upgrades, addressing security vulnerabilities and adding new functionality. Additionally, AKS releases patches for the underlying node operating system on a regular basis (aka Node Image Updates). You need to implement a process to upgrade the cluster.
 
 ## Pre-requisites
 
@@ -25,10 +25,10 @@ Make sure the following are complete before setting up ingress.
 3. Check the available upgrade versions for Kubernetes and Node Image
 4. Upgrade the system pool node image
 5. Upgrade the AKS control plane and system pool Kubernetes version
-6. Uprade the user pool Kubernetes version
+6. Upgrade the user pool Kubernetes version
 
     **Bonus Tasks:**
-7. Enable Automatic Uprades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
+7. Enable Automatic Upgrades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
 
 
 **Useful links:**

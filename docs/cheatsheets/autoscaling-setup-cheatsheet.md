@@ -131,7 +131,7 @@ NAME                              READY   STATUS    RESTARTS   AGE
 pod/sample-app-698647c467-tv9l8   1/1     Running   0          3m22s
 ```
 
-Next you should test that you can access the service. As mentioned above, you need to test against the private IP. There are many ways to do this. We'll take the simple appraoch of deploying an Ubuntu pod (Note: Make sure you've allowed Docker images and the Ubuntu Package Manager FQDNs through your egress firewall. Steps are at the end of the Egress Lockdown cheat sheet).
+Next you should test that you can access the service. As mentioned above, you need to test against the private IP. There are many ways to do this. We'll take the simple approach of deploying an Ubuntu pod (Note: Make sure you've allowed Docker images and the Ubuntu Package Manager FQDNs through your egress firewall. Steps are at the end of the Egress Lockdown cheat sheet).
 
 ```bash
 # Lets start and jump into an Ubuntu pod
@@ -270,7 +270,7 @@ kubectl apply -f ../../manifests/workshop-cheatsheet/autoscale-test/hpa.yaml
 # In one terminal lets watch the status of the HPA and the pod count
 watch kubectl get hpa,pods,nodes
 
-# Back in the ApacheBench temrinal, run another test.
+# Back in the ApacheBench terminal, run another test.
 ab -t 240 http://10.140.0.5/
 
 # After a few seconds you should start to see the HPA target metrics increase and the pod count go up
@@ -301,7 +301,7 @@ sample-app-698647c467-pnw78   161m         61Mi
 
 ### Test the Cluster Autoscaler
 
-The Cluster Autoscaler is looking for pods that are in a 'Pending' state because there arent enough nodes to handle the requested resources. To test it, we can just play around with the cpu request size and the max replicas in the HPA. Lets set the request size to 1000m (1 core) and the max pods to 5. This should cause the HPA to create up to 5 pods under load, and each pod will require 1 core, so we'll quickly spill over the current single node.
+The Cluster Autoscaler is looking for pods that are in a 'Pending' state because there aren't enough nodes to handle the requested resources. To test it, we can just play around with the cpu request size and the max replicas in the HPA. Lets set the request size to 1000m (1 core) and the max pods to 5. This should cause the HPA to create up to 5 pods under load, and each pod will require 1 core, so we'll quickly spill over the current single node.
 
 ```bash
 # Make the above mentioned changes in your deploy.yaml and hpa.yaml files and redeploy.
@@ -364,4 +364,4 @@ node/aks-userpool-23312598-vmss00000b     NotReady   <none>   2s      v1.22.11
 
 ### Tuning
 
-As you probably saw above, CPU based scaling can sometimes be a bit slow. There are a lot of factors that come into play that you can tune. As you saw above, there's the autoscaler profile settings that can be adjusted. You can also adjust the CPU and Memory threshholds. To improve the time taken to add a node to the cluster, you can look at the [autoscale mode](https://docs.microsoft.com/en-us/azure/aks/scale-down-mode), which will let you scale down by stopping but not deleting nodes (aka deallocation mode). This way a new node wont need to be provisioned, but rather an existing deallocated node just needs to be started.
+As you probably saw above, CPU based scaling can sometimes be a bit slow. There are a lot of factors that come into play that you can tune. As you saw above, there's the autoscaler profile settings that can be adjusted. You can also adjust the CPU and Memory thresholds. To improve the time taken to add a node to the cluster, you can look at the [autoscale mode](https://docs.microsoft.com/en-us/azure/aks/scale-down-mode), which will let you scale down by stopping but not deleting nodes (aka deallocation mode). This way a new node wont need to be provisioned, but rather an existing deallocated node just needs to be started.

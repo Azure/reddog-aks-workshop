@@ -19,7 +19,7 @@ You were asked to complete the following tasks:
 6. Uprade the user pool Kubernetes version
    
     **Bonus Tasks:**
-7. Enable Automatic Uprades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
+7. Enable Automatic Upgrades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
 
 
 ### Increase the Red Dog UI deployment replica count to 2

@@ -90,7 +90,7 @@ az aks create \
 
 ### Connect to the Cluster
 
-Now that the cluster has successfuly completed, we need to get the credentials and check it out. If you havent already, make sure you have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed.
+Now that the cluster has successfully completed, we need to get the credentials and check it out. If you haven't already, make sure you have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed.
 
 ```bash
 # Get the cluster credentials

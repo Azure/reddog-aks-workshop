@@ -6,7 +6,7 @@ In workload identity, you were given the following requirements:
 * A new Managed Identity should be created in the cluster resource group
 * A new Kubernetes Service Account must be created in a new namespace
 * The Managed Identity and Service Account must be federated using the cluster OIDC Issuer
-* Via custom code, you must demostrate an authenticated connection to an AAD Auth enabled endpoint to retrieve data
+* Via custom code, you must demonstrate an authenticated connection to an AAD Auth enabled endpoint to retrieve data
 
 You were asked to complete the following tasks:
 
@@ -28,7 +28,7 @@ az login
 # Select the subscription
 az account set -s [SUBSCRPTIONID]
 
-# Add or update the Azure CLI aks preview extention
+# Add or update the Azure CLI aks preview extension
 az extension add --name aks-preview
 az extension update --name aks-preview
 
