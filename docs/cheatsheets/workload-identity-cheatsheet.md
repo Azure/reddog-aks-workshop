@@ -63,7 +63,7 @@ Now that the cluster is enabled with the OIDC Issuer and Azure Workload Identity
 MANAGED_IDENTITY_NAME=testmi
 
 # Get the OIDC Issuer URL
-export AKS_OIDC_ISSUER="$(az aks show -n $CLUSTER_NAME -g $RG --query "oidcIssuerProfile.issuerUrl" -otsv)"
+export AKS_OIDC_ISSUER="$(az aks show -n $CLUSTER_NAME -g $RG --query "oidcIssuerProfile.issuerUrl" -o tsv)"
 
 # Create the managed identity
 az identity create --name $MANAGED_IDENTITY_NAME --resource-group $RG
