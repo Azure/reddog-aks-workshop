@@ -3,7 +3,7 @@
 ```bash
 RG=RedDogAKSWorkshop
 LOC=eastus
-ACRNAME=briarreddogacr # must be globally unique
+ACRNAME=reddogacr$RANDOM # must be globally unique
 KUBELET_IDENTITY_NAME=kubeletidentity #created in a prior step
 
 # create the ACR
@@ -15,14 +15,8 @@ ACRID=$(az acr show --resource-group $RG --name $ACRNAME --query id --output tsv
 
 az role assignment create --assignee-object-id $KUBELET_IDENTITY_OBJID --scope $ACRID --role acrpull
 
-# manually push copies of the Red Dog services
-docker pull ghcr.io/azure/reddog-retail-demo/reddog-retail-accounting-service:latest
-
-az acr login -n $ACRNAME
-
-docker tag ghcr.io/azure/reddog-retail-demo/reddog-retail-accounting-service:latest $ACRNAME.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest 
-
-docker push $ACRNAME.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest 
+# import the Red Dog image to the new ACR
+az acr import -n $ACRNAME --source ghcr.io/azure/reddog-retail-demo/reddog-retail-order-service:latest
 
 # update manifest and test image deployment
 # Eg: $ACRNAME.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest
@@ -34,11 +28,8 @@ kubectl apply -f ./manifests/workshop-cheatsheet/reddog-services/accounting-serv
 docker run --rm \
 --volume /var/run/docker.sock:/var/run/docker.sock \
 --name Grype anchore/grype:latest \
-briarreddogacrnew.azurecr.io/reddog-retail-demo/reddog-retail-accounting-service:latest
+$ACRNAME/reddog-retail-demo/reddog-retail-accounting-service:latest
 
 # container Image Scanning - Microsoft Defender for Containers
 https://docs.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-enable
-
-
-
 ```
