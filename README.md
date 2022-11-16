@@ -36,6 +36,9 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Bring images into ACR 
     * Image Security
 * [CI/CD & GitOps](./docs/cicd-gitops.md)
+* Identity and Key Vault
+    * [AKS Workload Identity](./docs/workload-identity.md)
+    * Key Vault Provider (CSI Driver)
 * Autoscaling
     * [Cluster and node autoscaler](./docs/autoscaling-setup.md)
     * HPA / KEDA
