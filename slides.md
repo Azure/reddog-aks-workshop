@@ -198,3 +198,35 @@ When the deploy is successful, you should see the following in the cluster and t
 #### Next: 
 
 [Monitoring / Logging](docs/monitoring.md)
+
+---
+# Monitoring
+---
+# Monitoring
+####  Azure Monitor Requirements
+
+> Azure Monitor & Log Analytics Workspace resource should reside in your resource group and in the same Azure region.
+
+---
+# Monitoring
+####  Tasks:
+
+**Azure Monitor**
+1. Create a log analytics workspace
+2. Enable container insights on your cluster with aforementioned WorkspaceId
+
+---
+# Monitoring
+####  Optional tasks
+
+**Prometheus & Grafana**
+1. Install/Deploy Prometheus/Grafana 
+2. Apply the privileged pod policy at the cluster level
+3. Test the policy is operating as expected
+
+--- 
+# Monitoring
+#### Next:
+
+* [Networking](docs/ingress.md)
+* [Network Policy](docs/network-policy.md)
