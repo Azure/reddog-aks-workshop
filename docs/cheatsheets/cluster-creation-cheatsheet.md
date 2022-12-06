@@ -56,7 +56,7 @@ Given the requirements we will set the following in our cluster creation command
   * **If you followed the egress lockdown path**, set the 'OutboundType' to use 'UserDefinedRouting'
   * **If you didn't follow the egress lockdown path**, set the 'OutboundType' to use 'LoadBalancer', or don't set it at all as this is the default value
 * We'll set the following address ranges (CIDRs)
-    * Pod CIDR: 10.244.0.0/24
+    * Pod CIDR: 10.244.0.0/16
     * Service CIDR: 10.245.0.0/24
     * DNS Service IP: 10.245.0.10
 * We'll set the network policy to use 'calico'
