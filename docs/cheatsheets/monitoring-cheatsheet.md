@@ -91,8 +91,7 @@ Check the status of your deployment
 Now lets test connectivity to the Prometheus and Grafana dashboards. They're deployed as 'Cluster IP' services, so we can either modify them to be type 'LoadBalancer' or we can use a port-forward. 
 
 
-X^PRO-TIP^
-Port forward will not work in Azure Cloud Shell
+*PRO-TIP Port forward will not work in Azure Cloud Shell - ask a proctor for help in modifying your deployment*
 ```bash
     kubectl port-forward service/grafana -n monitoring 3000:3000
     Forwarding from 127.0.0.1:3000 -> 3000
