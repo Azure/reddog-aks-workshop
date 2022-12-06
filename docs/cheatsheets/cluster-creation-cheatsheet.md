@@ -64,13 +64,13 @@ Given the requirements we will set the following in our cluster creation command
 
 ```bash
 # NOTE: Make sure you give your cluster a unique name
-CLUSTER_NAME=reddog-griffith
+CLUSTER_NAME=reddog-<YOURUNIQUENAME>
 
 # Cluster Creation Command
 
-# NOTE: You only need to set --outbound-type if you followed the egress
-# lockdown approach. If you didn't, then set it to 'LoadBalancer' or leave it
-# off entirely, as 'LoadBalancer' is the default value.
+# NOTE: If you are followng the egress lockdown approach, the --outbound-type must be
+# set to 'userDefinedRouting' Otherwise use 'LoadBalancer' which is the default
+
 az aks create \
 -g $RG \
 -n $CLUSTER_NAME \
@@ -81,7 +81,7 @@ az aks create \
 --pod-cidr 10.244.0.0/16 \
 --service-cidr 10.245.0.0/24 \
 --dns-service-ip 10.245.0.10 \
---outbound-type userDefinedRouting \
+--outbound-type LoadBalancer \
 --enable-managed-identity \
 --assign-identity $CLUSTER_IDENTITY_ID \
 --assign-kubelet-identity $KUBELET_IDENTITY_ID \
