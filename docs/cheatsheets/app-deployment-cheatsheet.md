@@ -74,6 +74,9 @@ kubectl create secret generic reddog.secrets \
 kubectl create secret generic reddog-sql \
     --namespace reddog \
     --from-literal=reddog-sql="$SQL_CONNECTION_STRING"
+    
+# Clone the Workshop GitHub Repo
+git clone https://github.com/Azure/reddog-aks-workshop.git
 
 # Deploy Red Dog Dapr configs
 kubectl apply -f ./manifests/workshop/dapr-components
