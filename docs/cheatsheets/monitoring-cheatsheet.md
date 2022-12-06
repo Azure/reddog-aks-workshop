@@ -88,8 +88,11 @@ Check the status of your deployment
     pod/prometheus-operator-6dc9f66cb7-8wc6p   2/2     Running   0          4h33m
 ```
 
-Now lets test connectivity to the Prometheus and Grafana dashboards. They're deployed as 'Cluster IP' services, so we can either modify them to be type 'LoadBalancer' or we can use a port-forward. We'll port-forward for now.
+Now lets test connectivity to the Prometheus and Grafana dashboards. They're deployed as 'Cluster IP' services, so we can either modify them to be type 'LoadBalancer' or we can use a port-forward. 
 
+
+X^PRO-TIP^
+Port forward will not work in Azure Cloud Shell
 ```bash
     kubectl port-forward service/grafana -n monitoring 3000:3000
     Forwarding from 127.0.0.1:3000 -> 3000
