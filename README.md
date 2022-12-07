@@ -46,6 +46,8 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * [Upgrade planning](/docs/cluster-upgrades.md)
     * [Azure Policy](docs/cluster-policy.md)
 * [Service Mesh](docs/service-mesh.md)
+* Cost Analysis
+    * [Kubecost](docs/kubecost.md)
 * Troubleshooting (Coming soon)
 * Storage (Coming soon)
 
