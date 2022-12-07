@@ -4,12 +4,12 @@
 
 *Create a Log Analytics Workspace*
 ```bash
-WORKSPACE-NAME=<set-something-unique>
+WORKSPACENAME=<set-something-unique>
 
 WORKSPACEID=$(az monitor \
 log-analytics workspace create \
 -g $RG \
--n $WORKSPACE-NAME \
+-n $WORKSPACENAME \
 | jq '.id' -r)
 ```
 
