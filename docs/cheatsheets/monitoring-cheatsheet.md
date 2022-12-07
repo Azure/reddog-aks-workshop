@@ -8,8 +8,7 @@ WORKSPACENAME=<set-something-unique>
 
 az monitor log-analytics workspace create -g $RG -n $WORKSPACENAME
 
-# grab the workspace id from the Azure portal on the Properties tab (example below)
-WORKSPACEID='ae36f048-2cee-4c2f-9324-9f0ce12455f'
+WORKSPACEID=$(az monitor log-analytics workspace show --resource-group $RG --workspace-name $WORKSPACENAME --query customerId -o tsv)
 ```
 
 *Enable Azure Container Insights on your cluster*
