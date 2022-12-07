@@ -11,11 +11,11 @@ At this point, you should have an AKS cluster fully deployed and the Red Dog app
 
 ## Tasks:
 
+You have 2 options for monitoring in this workshop: 
+
 **Azure Monitor**
 1. Create a log analytics workspace
 2. Enable container insights on your cluster with aforementioned WorkspaceId
-
-_OPTIONAL TASKS_
 
 **Prometheus & Grafana**
 1. Install/Deploy Prometheus/Grafana 
