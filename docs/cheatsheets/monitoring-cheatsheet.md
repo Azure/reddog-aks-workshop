@@ -6,11 +6,10 @@
 ```bash
 WORKSPACENAME=<set-something-unique>
 
-WORKSPACEID=$(az monitor \
-log-analytics workspace create \
--g $RG \
--n $WORKSPACENAME \
-| jq '.id' -r)
+az monitor log-analytics workspace create -g $RG -n $WORKSPACENAME
+
+# grab the workspace id from the Azure portal on the Properties tab (example below)
+WORKSPACEID='ae36f048-2cee-4c2f-9324-9f0ce12455f'
 ```
 
 *Enable Azure Container Insights on your cluster*
