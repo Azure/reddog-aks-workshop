@@ -17,6 +17,45 @@ You were asked to complete the following tasks:
 5. Create the secret provider configuration
 6. Deploy a pod that mounts the secret and test
 
+### Enable the cluster for AAD Workload Identity
+
+>*Note:* If you already completed the workload identity lab, you can skip this section
+
+At the time of writing this cheatsheet the Azure Workload Identity managed add-on is still in preview. The first thing we need to do is to make sure we have the feature enabled in our Azure CLI as well as on the target subscription. 
+
+```bash
+# Login to the subscription
+az login
+
+# Select the subscription
+az account set -s [SUBSCRPTIONID]
+
+# Add or update the Azure CLI aks preview extension
+az extension add --name aks-preview
+az extension update --name aks-preview
+
+# Register for the preview feature
+az feature register --namespace "Microsoft.ContainerService" --name "EnableWorkloadIdentityPreview"
+
+# Check registration status
+az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/EnableWorkloadIdentityPreview')].{Name:name,State:properties.state}"
+
+# Once the registration status shows 'Registered' you can continue to the next command
+
+# Refresh the provider
+az provider register --namespace Microsoft.ContainerService
+```
+
+Now to enable the Azure Workload Identity managed add-on and OIDC issuer on the target cluster.
+
+```bash
+RG=[RESOURCE GROUP NAME]
+CLUSTER_NAME=[CLUSTER NAME]
+
+az aks update -g $RG -n $CLUSTER_NAME \
+--enable-oidc-issuer \
+--enable-workload-identity
+```
 
 ### Enable the Key Vault CSI driver managed add-on on the AKS cluster
 
