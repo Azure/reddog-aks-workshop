@@ -24,12 +24,6 @@ You were asked to complete the following tasks:
 At the time of writing this cheatsheet the Azure Workload Identity managed add-on is still in preview. The first thing we need to do is to make sure we have the feature enabled in our Azure CLI as well as on the target subscription. 
 
 ```bash
-# Login to the subscription
-az login
-
-# Select the subscription
-az account set -s [SUBSCRPTIONID]
-
 # Add or update the Azure CLI aks preview extension
 az extension add --name aks-preview
 az extension update --name aks-preview
