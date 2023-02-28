@@ -79,6 +79,9 @@ CLUSTER_IDENT_ID=$(az identity show \
 -o tsv \
 --query principalId)
 
+## NOTE: You may need to wait 30-60 seconds for the identity to propegate before running the next command.
+##       If it fails the first time, wait a few seconds and try again.
+
 # Grant the Managed Identity Contributor on the Resource Group
 az role assignment create \
 --assignee $CLUSTER_IDENT_ID \

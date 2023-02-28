@@ -13,6 +13,12 @@ In egress lockdown, you were given the following requirements:
     |AzureCloud.\<region\>|TCP|9000, 443|
     |ntp.ubuntu.com|UDP|123|
     |AzureKubernetesService|TCP|80, 443|
+    |mcr.microsoft.com|TCP|80, 443|
+    |*.data.mcr.microsoft.com|TCP|80, 443|
+    |management.azure.com|TCP|80, 443|
+    |login.microsoftonline.com|TCP|80, 443|
+    |packages.microsoft.com|TCP|80, 443|
+    |acs-mirror.azureedge.net|TCP|80, 443|
 
 You were asked to complete the following tasks:
 
@@ -103,6 +109,23 @@ az network firewall application-rule create \
 --protocols 'http=80' 'https=443' \
 --fqdn-tags "AzureKubernetesService" \
 --action allow --priority 100
+
+TARGET_FQDNS=('mcr.microsoft.com' \
+'*.data.mcr.microsoft.com' \
+'management.azure.com' \
+'login.microsoftonline.com' \
+'packages.microsoft.com' \
+'acs-mirror.azureedge.net')
+
+az network firewall application-rule create \
+-g $RG \
+-f $FIREWALLNAME \
+--collection-name 'aksfwar2' \
+-n 'fqdn' \
+--source-addresses '*' \
+--protocols 'http=80' 'https=443' \
+--target-fqdns $TARGET_FQDNS[@] \
+--action allow --priority 101
 ```
 
 
@@ -162,7 +185,7 @@ az network firewall application-rule create \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
 --target-fqdns auth.docker.io registry-1.docker.io index.docker.io dseasb33srnrn.cloudfront.net production.cloudflare.docker.com \
---action allow --priority 101
+--action allow --priority 102
 ```
 
 ### Ubuntu Apt
@@ -175,7 +198,7 @@ az network firewall application-rule create \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
 --target-fqdns archive.ubuntu.com security.ubuntu.com \
---action allow --priority 102
+--action allow --priority 103
 ```
 
 ### Alpine Apk
@@ -188,7 +211,7 @@ az network firewall application-rule create \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
 --target-fqdns dl-cdn.alpinelinux.org \
---action allow --priority 102
+--action allow --priority 104
 ```
 
 ### Azure Marketplace
@@ -202,7 +225,7 @@ az network firewall application-rule create \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
 --target-fqdns marketplace.azurecr.io marketplaceeush.cdn.azcr.io \
---action allow --priority 103
+--action allow --priority 105
 ```
 
 ### GitHub Registry (RedDog Registry)
@@ -216,7 +239,7 @@ az network firewall application-rule create \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
 --target-fqdns ghcr.io pkg-containers.githubusercontent.com \
---action allow --priority 104
+--action allow --priority 106
 ```
 
 
@@ -231,7 +254,7 @@ az network firewall application-rule create \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
 --target-fqdns registry.k8s.io k8s.gcr.io storage.googleapis.com \
---action allow --priority 105
+--action allow --priority 107
 ```
 
 ### Service Bus Endpoint

@@ -18,6 +18,12 @@ Controlling the flow of traffic leaving the cluster, in particular to the public
     |AzureCloud.\<region\>|TCP|9000, 443|
     |ntp.ubuntu.com|UDP|123|
     |AzureKubernetesService|TCP|80, 443|
+    |mcr.microsoft.com|TCP|80, 443|
+    |*.data.mcr.microsoft.com|TCP|80, 443|
+    |management.azure.com|TCP|80, 443|
+    |login.microsoftonline.com|TCP|80, 443|
+    |packages.microsoft.com|TCP|80, 443|
+    |acs-mirror.azureedge.net|TCP|80, 443|
 
 ## Task:
 
