@@ -21,10 +21,35 @@ Since Azure Kubernetes Service needs to interact with Azure to make infrastructu
 
 ## Task:
 
-1. Create the Resource Group and Azure Virtual Network and subnet that will be used for your AKS cluster. 
-   > **Warning**
-   >
-   > You will be asked to add other components to the network later in the workshop, so make sure you leave address space.
+1. Create the Resource Group and Azure Virtual Network and subnet that will be used for your AKS cluster. You will be asked to add other components to the network later in the workshop, so make sure you leave address space.
+
+    <details>
+      <summary>Click here for "cheat sheet"</summary>
+
+      ### Resource Group Creation
+
+      All resource in Azure are placed in a resource group, so we need to start there before creating any other resources:
+
+      ```bash
+      # Resource Group Creation
+      RG=RedDogAKSWorkshop
+      LOC=eastus
+      az group create -g $RG -l $LOC
+      ```
+
+      In later steps we may need the Azure Resource ID for the Resource Group. Here's how we get that:
+
+      ```bash
+      # Get the resource group id
+      RG_ID=$(az group show -g $RG -o tsv --query id)
+      ```
+
+      ### VNet/Subnet Creation
+
+      Using the resource group we created previously, we create the Vnet and Subnet for both the AKS cluster and for the Azure Firewall.
+
+
+    </details>   
 
 2. Get the resource ID for the subnet where the AKS cluster will be deployed.
 3. Create a managed identity for the cluster in the cluster resource group, with the rights documented in the requirements.
