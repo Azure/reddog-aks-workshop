@@ -241,6 +241,8 @@ kind: Pod
 metadata:
   name: wi-kv-test
   namespace: ${NAMESPACE}
+  labels:
+    azure.workload.identity/use: "true"
 spec:
   serviceAccountName: ${SA_NAME}
   containers:
