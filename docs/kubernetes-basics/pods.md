@@ -293,4 +293,4 @@ You should now have a basic undersatnding of the use of pods. You can see more d
 
 ## Next Lab:
 
-[Kubernetes Pods](./deployments.md)
+[Kubernetes Deployments](./deployments.md)
