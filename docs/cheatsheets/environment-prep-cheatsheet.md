@@ -92,5 +92,11 @@ az role assignment create \
 az identity create \
 --name kubeletidentity \
 --resource-group $RG
+
+KUBELET_IDENT_ID=$(az identity show \
+--name kubeletidentity \
+-g $RG \
+-o tsv \
+--query principalId)
 ```
 
