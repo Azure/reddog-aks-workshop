@@ -89,8 +89,8 @@ spec:
 Create your own manifests using the above and apply to the reddog namespace, or apply as follows from the repo:
 
 ```bash
-kubectl apply -f ../../manifests/workshop-cheatsheet/network-policy/reddog-default-deny-ingress.yaml
-kubectl apply -f ../../manifests/workshop-cheatsheet/network-policy/reddog-ns-allow.yaml
+kubectl apply -f ./manifests/workshop-cheatsheet/network-policy/reddog-default-deny-ingress.yaml
+kubectl apply -f ./manifests/workshop-cheatsheet/network-policy/reddog-ns-allow.yaml
 ```
 
 ### Test your changes
