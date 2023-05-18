@@ -83,7 +83,9 @@ Deploy the Ingress configuration.
 
 ```bash
 # Apply the ingress manifest
-kubectl apply -f ../../manifests/workshop-cheatsheet/ingress/ingress.yaml -n reddog
+# from reddog-aks-workshop repo root
+
+kubectl apply -f ./manifests/workshop-cheatsheet/ingress/ingress.yaml -n reddog
 
 # Check ingress status
 kubectl get ingress -n reddog
