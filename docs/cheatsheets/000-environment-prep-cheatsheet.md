@@ -54,12 +54,7 @@ When we create the AKS Cluster, we'll need the Azure Resource ID for the subnet 
 
 ```bash
 # Get a subnet resource ID
-az network vnet subnet show \
--g $RG \
---vnet-name $VNET_NAME  \
---name aks \
--o tsv \
---query id
+VNET_SUBNET_ID=$(az network vnet subnet show -g $RG --vnet-name $VNET_NAME -n $SUBNET_NAME -o tsv --query id)
 ```
 
 ### Create a managed identity
