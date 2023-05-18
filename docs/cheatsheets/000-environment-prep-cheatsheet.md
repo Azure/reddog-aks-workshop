@@ -68,7 +68,7 @@ az identity create \
 --resource-group $RG
 
 # Get Managed Identity Resource ID
-CLUSTER_IDENT_ID=$(az identity show \
+CLUSTER_IDENTITY_ID=$(az identity show \
 --name clusteridentity \
 -g $RG \
 -o tsv \
@@ -88,7 +88,7 @@ az identity create \
 --name kubeletidentity \
 --resource-group $RG
 
-KUBELET_IDENT_ID=$(az identity show \
+KUBELET_IDENTITY_ID=$(az identity show \
 --name kubeletidentity \
 -g $RG \
 -o tsv \
