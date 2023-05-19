@@ -114,6 +114,8 @@ az keyvault set-policy --name $KEY_VAULT_NAME --secret-permissions get --spn "${
 
 ### Write the code to test your Workload Identity setup
 
+If you wish to write the code and build a test container from scratch you can continue with this section.  Otherwise you can just skip to the [Super Cheat](#super-cheat) Section Below.
+
 Now we have our cluster setup properly and have created a test target for an AAD authenticated call. Let's write some code to call the key vault. In this case we'll use dotnet, but you can use any language you prefer that is supported by the [Microsoft Authentication Libraries](https://learn.microsoft.com/en-us/azure/active-directory/develop/reference-v2-libraries).
 
 ```bash
@@ -247,6 +249,81 @@ spec:
   serviceAccountName: ${SA_NAME}
   containers:
     - image: ${ACR_FQDN}/${IMAGE_NAME}
+      name: wi-kv-test
+      env:
+      - name: KEY_VAULT_NAME
+        value: ${KEY_VAULT_NAME}
+      - name: SECRET_NAME
+        value: Secret    
+  nodeSelector:
+    kubernetes.io/os: linux
+EOF
+
+# Check the pod status
+kubectl get pods -n $NAMESPACE
+
+# Sample Output
+NAME         READY   STATUS    RESTARTS   AGE
+wi-kv-test   1/1     Running   0          2m9s
+
+# Now check the logs
+kubectl logs -f wi-kv-test -n $NAMESPACE
+
+# Sample Output
+Retrieving your secret from griffith-kv.
+Your secret is 'Hello from key vault'.
+Retrieving your secret from griffith-kv.
+Your secret is 'Hello from key vault'.
+Retrieving your secret from griffith-kv.
+Your secret is 'Hello from key vault'.
+```
+
+You now have a cluster enabled with the OIDC Issuer and the Azure Workload Identity managed add-on with a deployed application using a Kubernetes Service Account that has been federated to an Azure Managed Identity to access a secret in an Azure Key Vault!
+
+
+### Super Cheat
+
+NOTE: if you deployed with the optional egress-lock down with firewall you must ensure that there is a rule that allows ```ghcr.io``` as an egress FQDN on port ```:443``` as your cluster will be pulling a container image from our package repo. 
+
+Now all we need to do is create a pod that uses our federated service account with our test app loaded!
+
+```bash
+# First get the namespace and service account names
+kubectl get ns
+
+# Sample Output
+NAME                     STATUS   AGE
+default                  Active   53m
+kube-node-lease          Active   53m
+kube-public              Active   53m
+kube-system              Active   53m
+workload-identity-test   Active   40m
+
+# Set the Namespace name
+NAMESPACE=workload-identity-test
+
+kubectl get sa -n $NAMESPACE
+
+# Sample Output
+NAME        SECRETS   AGE
+default     1         41m
+testmi-sa   1         41m
+
+# Set the service account name
+SA_NAME=testmi-sa
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wi-kv-test
+  namespace: ${NAMESPACE}
+  labels:
+    azure.workload.identity/use: "true"
+spec:
+  serviceAccountName: ${SA_NAME}
+  containers:
+    - image: ghcr.io/azure/reddog-aks-workshop/workload-identity-app:latest
       name: wi-kv-test
       env:
       - name: KEY_VAULT_NAME
