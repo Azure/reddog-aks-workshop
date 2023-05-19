@@ -12,9 +12,23 @@ terraform {
 }
 
 provider "azurerm" {
-  # Configuration options
+  features {
+    
+  }
 }
 
 locals {
     password = var.password
+}
+
+data "azurerm_subscription" "primary" {
+}
+
+data "azurerm_client_config" "example" {
+}
+
+data "azuread_client_config" "current" {}
+
+data "azuread_domains" "example" {
+  only_initial = true
 }

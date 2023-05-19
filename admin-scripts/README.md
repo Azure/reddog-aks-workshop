@@ -5,6 +5,7 @@ This directory is used for setting up a lab/workshop environment.
 What will this deploy:
 - Azure Active Directory (AAD) Users (Temporary only for lab/workshop event)
 - Resource Groups scoped to each user (e.g. user2@tenant.onmicrosoft.com ---Scoped/RBAC/IAM access to---> RG2)
+- Creates a Workshop group to add all users to
 
 ## Requirements
 
