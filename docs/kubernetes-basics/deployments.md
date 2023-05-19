@@ -284,8 +284,11 @@ You should now have a basic undersatnding of the use of deployments and replica 
 * [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 * [Replica Sets](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
 * [Horizontal Pod Autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
-* [JSONPath Usage](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
 
+There are also a couple of special deployment types you may be interested in, not covered here.
+
+* [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
+* [StatefuleSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 ## Next Lab:
 
 [Kubernetes Daemonsets](./daemonsets.md)
