@@ -211,7 +211,7 @@ NAME    READY   STATUS    RESTARTS   AGE
 nginx   0/1     Pending   0          21s
 ```
 
-As you can see, the pod is pending. Node run a describe on the pod to see the pod events which will explain why it hasnt started.
+As you can see, the pod is pending. Now run a describe on the pod to see the pod events which will explain why it hasnt started.
 
 ```bash
 # Describe the pod
@@ -259,7 +259,7 @@ Events:
 
 ### Limits
 
-Now that you've seen requests, lets look at limits. First, create a file named limit-pod.yaml with the following contents. In the below file, we create a pod using the ubuntu image. When the pod starts it will sleep for 20 seconds and then will run a command to write 500Mi of zeros to memory. Since the limit is set at 400Mi the pod will exceed its limit.
+Now that you've seen requests, lets look at limits. First, create a file named limit-pod.yaml with the following contents. In the below file, we create a pod using the ubuntu image. When the pod starts it will sleep for 20 seconds and then will run a command to write 500M of zeros to memory. Since the limit is set at 400Mi the pod will exceed its limit.
 
 ```yaml
 apiVersion: v1
@@ -283,6 +283,8 @@ spec:
 ```
 
 Deploy the pod and watch it's behavior. You should see it start to show the status of **OOMKilled**, which means the pod was 'Out of Memory Killed' (i.e. It exceeded it's assigned memory limit and was killed.)
+
+>**Note:** If you'd like to better understand the difference between the use of M and Mi, read this article: [Understanding Kubernetes Resource (CPU and Memory) Units](https://medium.com/swlh/understanding-kubernetes-resource-cpu-and-memory-units-30284b3cc866)
 
 ```bash
 # Deploy the pod
