@@ -78,6 +78,9 @@ kubectl create secret generic reddog-sql \
 # Clone the Workshop GitHub Repo
 git clone https://github.com/Azure/reddog-aks-workshop.git
 
+# Move to the repository directory
+cd reddog-aks-workshop
+
 # Deploy Red Dog Dapr configs
 kubectl apply -f ./manifests/workshop/dapr-components
 kubectl apply -f ./manifests/workshop/reddog-services/rbac.yaml
