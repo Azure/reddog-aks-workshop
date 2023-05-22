@@ -138,6 +138,7 @@ USER_POOL_NAME=userpool
 az aks nodepool add \
 --resource-group $RG \
 --cluster-name $CLUSTER_NAME \
+--node-vm-size Standard_D2_v4 \
 --name $USER_POOL_NAME \
 --mode User
 
