@@ -204,4 +204,4 @@ You should now have a basic undersatnding of the use of Kubernetes Services. You
 
 ## Next Lab:
 
-[Kubernetes Pods](./jobs.md)
+[Kubernetes Jobs](./jobs.md)

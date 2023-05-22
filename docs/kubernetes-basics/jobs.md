@@ -4,7 +4,7 @@
 
 In Kubernetes, Jobs allow you to create simple pods that execute a specific task to completion the number of times specified. Jobs are great for running scheduled tasks on your cluster. You can read more about jobs at the article below:
 
-[Kubernetes JObs](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+[Kubernetes Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
 
 ### Job Creation and Deletion
 
