@@ -75,6 +75,7 @@ az aks create \
 -g $RG \
 -n $CLUSTER_NAME \
 --nodepool-name systempool \
+--node-vm-size Standard_D2_v4 \
 --network-plugin kubenet \
 --network-policy calico \
 --vnet-subnet-id $VNET_SUBNET_ID \
@@ -137,6 +138,7 @@ USER_POOL_NAME=userpool
 az aks nodepool add \
 --resource-group $RG \
 --cluster-name $CLUSTER_NAME \
+--node-vm-size Standard_D2_v4 \
 --name $USER_POOL_NAME \
 --mode User
 

@@ -54,12 +54,7 @@ When we create the AKS Cluster, we'll need the Azure Resource ID for the subnet 
 
 ```bash
 # Get a subnet resource ID
-az network vnet subnet show \
--g $RG \
---vnet-name $VNET_NAME  \
---name aks \
--o tsv \
---query id
+VNET_SUBNET_ID=$(az network vnet subnet show -g $RG --vnet-name $VNET_NAME -n aks -o tsv --query id)
 ```
 
 ### Create a managed identity
@@ -73,7 +68,7 @@ az identity create \
 --resource-group $RG
 
 # Get Managed Identity Resource ID
-CLUSTER_IDENT_ID=$(az identity show \
+CLUSTER_IDENTITY_ID=$(az identity show \
 --name clusteridentity \
 -g $RG \
 -o tsv \
@@ -84,7 +79,7 @@ CLUSTER_IDENT_ID=$(az identity show \
 
 # Grant the Managed Identity Contributor on the Resource Group
 az role assignment create \
---assignee $CLUSTER_IDENT_ID \
+--assignee $CLUSTER_IDENTITY_ID \
 --role "Contributor" \
 --scope "$RG_ID"
 
@@ -92,5 +87,11 @@ az role assignment create \
 az identity create \
 --name kubeletidentity \
 --resource-group $RG
+
+KUBELET_IDENTITY_ID=$(az identity show \
+--name kubeletidentity \
+-g $RG \
+-o tsv \
+--query principalId)
 ```
 

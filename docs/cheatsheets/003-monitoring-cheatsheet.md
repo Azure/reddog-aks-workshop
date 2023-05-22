@@ -8,7 +8,7 @@ WORKSPACENAME=<set-something-unique>
 
 az monitor log-analytics workspace create -g $RG -n $WORKSPACENAME
 
-WORKSPACEID=$(az monitor log-analytics workspace show --resource-group $RG --workspace-name $WORKSPACENAME --query id -o json)
+WORKSPACEID=$(az monitor log-analytics workspace show --resource-group $RG --workspace-name $WORKSPACENAME --query id -o json | jq -r .)
 ```
 
 *Enable Azure Container Insights on your cluster*
@@ -103,4 +103,4 @@ Navigate your browser to http://localhost:3000
 Enter the userid and password (admin:admin) and then follow the prompts to reset the admin password
 
 
-Click on the '/Node Exporter/USE Method/Cluster' dashboard, and notice that the data is only sourced from the Linux nodes.
+Click on the 'Node Exporter/USE Method/Cluster' dashboard, and notice that the data is only sourced from the Linux nodes.

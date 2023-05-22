@@ -67,6 +67,19 @@
     stress-ng --cpu 64 --cpu-method all --vm 4 --vm-bytes 1G
     stress-ng --vm 2 --vm-bytes 2G --mmap 2 --mmap-bytes 2G --page-in
     ```
+## App Deployment
+
+* Unable to deploy Service Bus due to circular import in python library
+    * Workaround #1: Downgrade az cli version to 2.47.0 (known issue in 2.48.1)
+        ```bash
+        # Check version 
+        az version
+        # if 2.48.1 or newer you will likley need to downgrade to 2.47.0
+
+        # Downgrade version
+        sudo apt update
+        sudo apt-get install azure-cli=2.47.0-1~bullseye
+        ```
 
 ## Workload Troubleshooting
 

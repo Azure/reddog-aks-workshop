@@ -1,0 +1,39 @@
+name: Workload Identity Build and Push to GHCR
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/cheatsheets/workload-identity-app/**'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  REPOSITORY: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Login to GHCR
+      uses: docker/login-action@v1
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: downcase env.REPOSITORY
+      run: |
+        echo "REPOSITORY=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: docs/cheatsheets/workload-identity-app
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}/workload-identity-app:latest

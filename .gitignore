@@ -362,3 +362,12 @@ outputs/
 
 config.json
 brian-notes.md
+
+# Terraform/Ray things
+.terraform/
+*.lock.hcl
+*.tfstate
+*.tfstate.backup
+tfplan
+*.tfplan
+*.tfstate.lock.info

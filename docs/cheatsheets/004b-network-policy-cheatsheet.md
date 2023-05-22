@@ -89,8 +89,8 @@ spec:
 Create your own manifests using the above and apply to the reddog namespace, or apply as follows from the repo:
 
 ```bash
-kubectl apply -f ../../manifests/workshop-cheatsheet/network-policy/reddog-default-deny-ingress.yaml
-kubectl apply -f ../../manifests/workshop-cheatsheet/network-policy/reddog-ns-allow.yaml
+kubectl apply -f ./manifests/workshop-cheatsheet/network-policy/reddog-default-deny-ingress.yaml
+kubectl apply -f ./manifests/workshop-cheatsheet/network-policy/reddog-ns-allow.yaml
 ```
 
 ### Test your changes
@@ -145,7 +145,7 @@ You can re-run the steps above and target either the 'ingress' or 'reddog' names
 
 ## Bonus
 
-If you want to explore network policy further, you should explore the laps provided in the Kubernetes Hackfest at the link below. You'll find labs for botht he Open Source Calico project, as well as steps to try out Calico Cloud by Tigera, which gives you a managed cloud portal for managing and viewing network policy in your AKS cluster.
+If you want to explore network policy further, you should explore the labs provided in the Kubernetes Hackfest at the link below. You'll find labs for both the Open Source Calico project, as well as steps to try out Calico Cloud by Tigera, which gives you a managed cloud portal for managing and viewing network policy in your AKS cluster.
 
 [Calico on AKS](https://github.com/Azure/kubernetes-hackfest/blob/master/labs/networking/calico-lab-exercise/README.md)
 
