@@ -291,4 +291,4 @@ There are also a couple of special deployment types you may be interested in, no
 * [StatefuleSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 ## Next Lab:
 
-[Kubernetes Daemonsets](./daemonsets.md)
+[Kubernetes Daemonsets](./services.md)
