@@ -19,6 +19,7 @@ This repository leverages the [reddog applicaton codebase](https://github.com/Az
     * Identity Planning
 * [Egress lockdown (Optional)](./docs/optional-001-egress-lockdown.md)
 * [Cluster Creation / Nodepool Design](./docs/001-cluster-creation.md)
+* [Kubernetes Basics](./docs/kubernetes-basics/kube-basics.md)
 * [Application Manifests and Deployment](./docs/002-app-deployment.md)
     * Version control / Image tags
     * Resource requirements (CPU, memory, etc.)
