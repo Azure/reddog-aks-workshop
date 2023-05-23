@@ -72,7 +72,7 @@ CLUSTER_IDENTITY_ID=$(az identity show \
 --name clusteridentity \
 -g $RG \
 -o tsv \
---query id)
+--query principalId)
 
 ## NOTE: You may need to wait 30-60 seconds for the identity to propegate before running the next command.
 ##       If it fails the first time, wait a few seconds and try again.
@@ -92,6 +92,6 @@ KUBELET_IDENTITY_ID=$(az identity show \
 --name kubeletidentity \
 -g $RG \
 -o tsv \
---query id)
+--query principalId)
 ```
 
