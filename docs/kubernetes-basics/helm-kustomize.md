@@ -255,6 +255,148 @@ helm install sample-chart -f sample/values.yaml sample
 # Again, if you describe one of the pods, you'll see its running image tag 1.24, which matches what we had in the values.yaml
 ```
 
+## Kustomize
 
+In this section we'll take a look at how to use [Kustomize](https://kustomize.io) and look how it differs from Helm.  For most systems running the latest ```kubectl``` version, kustomize is included as a subcommand (```kubectl kustomize```).  You may also run and install it as a separate standalone cli.
 
+You will see shortly that Kustomize works differently than Helm, in that it doesn't require any string/variable interpolation.  Instead you would use a separate ```kustomization.yaml``` file to override values just like in Helm (via ```values.yaml```) but with Kustomize, it is able to replace values based on the property path (e.g. ```metadata.labels.app: new-value```) without prior parameterization.  In otherwords, you do not require/need to pre-establish variable interpolation in your manifest files in advance; kustomize can replace values in-place.
 
+### Uninstall your previous helm deployment
+
+**If you ran the previous Helm section:** You will need to uninstall the previous installed helm chart(s).  If you did not install the helm chart you can skip this section.
+
+```bash
+helm uninstall sample-chart -n lab
+```
+
+### Create Kustomize files and folder structure
+
+Now create the following new files.  You'll notice that there is nothing "special" about these manifest files.  We do not need to add any parameter/string/variable interpolation syntax to our file.
+
+templates/sample-app/deployment.yaml
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx:1.23.4
+        name: nginx
+```
+
+templates/sample-app/service.yaml
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+```
+
+Next create a ```kustomization.yaml``` file. Kustomize uses tihs file to understand which files it will use and deploy.  It will generate a single combined/concatenated version of all these manifests files to apply to your cluster. 
+
+templates/sample-app/kustomization.yaml
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+```
+
+You can now deploy the above as a single compiled deployment via the following command:
+```yaml
+# change directory to the sample-app directory if you're not already there
+cd templates/sample-app
+
+# apply the kustomization.yaml - the command looks at the current directory and looks for kustomization.yaml/yml file and applies accordingly
+kubectl apply -k ./
+```
+
+Now observe your pods and see the image deployed as expected ```nginx:1.23.4```
+
+```bash
+kubectl get pods 
+
+pod/nginx-7467c7b65c-d7c86   1/1     Running   0          9s
+pod/nginx-7467c7b65c-khvz2   1/1     Running   0          9s
+pod/nginx-7467c7b65c-pkvl9   1/1     Running   0          9s
+
+kubectl describe pod pod/nginx-7467c7b65c-d7c86
+```
+
+You can now search the output for the contianer image version which should look like the following:
+
+```bash
+# Content shortend for bervity
+Containers:
+  nginx:
+    Container ID:   containerd://99bed470db5dae0c90af89122fe9f5fb168bf6ad85d50d29bbc9667a43ea744f
+    Image:          nginx:1.23.4
+    Image ID:       docker.io/library/nginx@sha256:f5747a42e3adcb3168049d63278d7251d91185bb5111d2563d58729a5c9179b0
+```
+
+Now let's update our manifest, and change the container image to a differnt version; in this case we're going to "rollback" to a slightly older ```nginx``` version ```1.23.3```.
+
+To do this we will modify our ```kustomization.yaml``` file:
+
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+images:
+- name: nginx
+  newName: nginx
+  newTag: 1.23.3
+```
+
+You can watch the containers update/redploy:
+
+```bash
+kubectl get pods
+
+## Sample output:
+NAME                     READY   STATUS              RESTARTS   AGE
+nginx-6495f4c786-grknb   0/1     ContainerCreating   0          4s
+nginx-7467c7b65c-d7c86   1/1     Running             0          24m
+nginx-7467c7b65c-khvz2   1/1     Running             0          24m
+nginx-7467c7b65c-pkvl9   1/1     Running             0          24m
+```
+
+You'll notice that just like a normal deployment (because this is...) it will do a rolling deployment update by adding a new pod with the new specified container image (```nginx:1.23.3```).
+
+```bash
+kubectl describe po <your-newly-created-pod-name> 
+
+# Contenet shortend for brevity
+Containers:
+  nginx:
+    Container ID:   containerd://ca0cc46cdebdbacfd9c1568591535bfc93a4f75133bf2fdc25a2551f7290751c
+    Image:          nginx:1.23.3
+    Image ID:       docker.io/library/nginx@sha256:f4e3b6489888647ce1834b601c6c06b9f8c03dee6e097e13ed3e28c01ea3ac8c
+```
+
+You will find that if you search for "Image" you'lll find the new value updated to ```nginx:1.23.3```.
+
+Note that this is one of several methods to update values via kustomize.  You may also use separate yaml files, which can be used to hold only the updated values.  Which method you prefer or use will depend on your GitOps/Operational perference.  Please refer to the official kustomize documenation [here](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/#customizing) to see how else you can update your manifests.
