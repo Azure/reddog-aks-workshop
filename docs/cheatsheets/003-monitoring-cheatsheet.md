@@ -23,7 +23,7 @@ az aks enable-addons -a monitoring \
 
 *Install Kube Prometheus*
 
-The first step in getting our Windows node metrics into Prometheus and Grafana is to install the Kube Prometheus project into our cluster. We'll do this using the manifests published by the Kube Prometheus project.
+The first step in getting our node metrics into Prometheus and Grafana is to install the Kube Prometheus project into our cluster. We'll do this using the manifests published by the Kube Prometheus project.
 
 *Clone the Kube Prometheus repository*
 
@@ -34,17 +34,17 @@ The first step in getting our Windows node metrics into Prometheus and Grafana i
 To make sure you're running the right version, check the [version compatibility table](https://github.com/prometheus-operator/kube-prometheus#compatibility) and then git checkout the right branch for your specific Kubernetes version. 
 
 ```bash
-    # Looking at the compatibility matrix I can see that Kubernetes 1.23 is compatible with Kube Prometheus release-0.10
+    # Looking at the compatibility matrix I can see that Kubernetes 1.23 is compatible with Kube Prometheus release-0.12
 
-    # Checkout the release-0.10 branch
+    # Checkout the release-0.12 branch
     cd kube-prometheus
-    git checkout release-0.10
+    git checkout release-0.12
 ```
 
 Here is a sample output
 ```bash
-    Switched to branch 'release-0.10'
-    Your branch is up to date with 'origin/release-0.10'.
+    Switched to branch 'release-0.12'
+    Your branch is up to date with 'origin/release-0.12'.
 ```
 
 Now we can follow the documented installation steps from the Kube Prometheus project
