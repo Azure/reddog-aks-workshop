@@ -18,7 +18,7 @@ Familiarize yourself with the HPA, Cluster Autoscaler and Azure Load Testing, re
 
 ## Tasks:
 
-1. Use a tool to generate load (e.g.: Apache Benchmark, jMeter, wrk, Azure Load Testing) to test the performance of the application.
+1. Use a tool to generate load (e.g.: [Apache Benchmark](https://httpd.apache.org/docs/2.4/programs/ab.html), [jMeter](https://jmeter.apache.org/), [wrk](https://github.com/wg/wrk), [artillery](https://www.artillery.io/), [k6](https://k6.io/), [Azure Load Testing](https://azure.microsoft.com/en-us/products/load-testing/)) to test the performance of the application.
 1. Configure autoscaling for all nodepools based on the requirements above
 1. Validate pod autoscaling is working
 1. Validate cluster autoscaling is working
