@@ -26,14 +26,14 @@ spec:
           - name: STORE_ID
             value: "denver"
           - name: MAX_ITEM_QUANTITY
-            value: "9"
+            value: "25"
           - name: MIN_SEC_TO_PLACE_ORDER
-            value: "2"
+            value: "1"
           - name: MAX_SEC_TO_PLACE_ORDER
-            value: "8"
+            value: "3"
           - name: MIN_SEC_BETWEEN_ORDERS
-            value: "2"
+            value: "1"
           - name: MAX_SEC_BETWEEN_ORDERS
-            value: "8"
+            value: "3"
           - name: NUM_ORDERS
             value: "-1"
