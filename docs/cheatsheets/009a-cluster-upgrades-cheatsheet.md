@@ -6,7 +6,7 @@ In cluster upgrade, you were given the following requirements:
 * The UI running pod count should be increased to 2
 * The UI pod count should never go below 1 during an upgrade
 * Day 1 (simulated): Due to a critical OS level CVE you've been asked to upgrade the system pool **NODE IMAGE ONLY**
-* Day 2 (simulated): Due to a critical Kubernetes level CVI you've been asked to upgrade the control plane and the system pool Kubernetes version to the next incremental version (major or minor)
+* Day 2 (simulated): Due to a critical Kubernetes level CVE you've been asked to upgrade the control plane and the system pool Kubernetes version to the next incremental version (major or minor)
 * Day 3 (simulated): To take advantage of some new Kubernetes features you've been asked to upgrade the user pool Kubernetes version to the next incremental version (major or minor)
   
 You were asked to complete the following tasks:
