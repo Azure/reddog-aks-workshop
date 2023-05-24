@@ -9,3 +9,4 @@ If this is your first time working with Kubernetes, it makes sense to spend some
 * [Deployments](./deployments.md)
 * [Services](./services.md)
 * [Jobs](./jobs.md)
+* [Helm and Kustomize](./helm-kustomize.md)
