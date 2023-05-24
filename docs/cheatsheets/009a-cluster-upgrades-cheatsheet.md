@@ -16,7 +16,7 @@ You were asked to complete the following tasks:
 3. Check the available upgrade versions for Kubernetes and Node Image
 4. Upgrade the system pool node image
 5. Upgrade the AKS control plane and system pool Kubernetes version
-6. Uprade the user pool Kubernetes version
+6. Upgrade the user pool Kubernetes version
    
     **Bonus Tasks:**
 7. Enable Automatic Upgrades to the 'patch' channel and set a Planned Maintenance Window (preview) for Saturdays at 1am
@@ -199,7 +199,7 @@ aks-systempool-19117480-vmss000001   Ready    agent   6m12s   v1.23.5
 aks-systempool-19117480-vmss000002   Ready    agent   2m33s   v1.23.5
 ```
 
-### Uprade the user pool Kubernetes version
+### Upgrade the user pool Kubernetes version
 
 You need to repeat the above steps, but this time, rather than watching the node list you should watch the pod list and see how your pod disruption budget ensures you have at least 1 UI pod running at all times.
 
@@ -260,7 +260,7 @@ virtual-worker-7688f55746-wr69p       2/2     Running   0             65s    10.
 # You should have found that this upgrade was much faster than the systempool upgrade, because we had far fewer pods, and almost no pod disruption budgets to be concerned with, which inherently slow down upgrades.
 ```
 
-### BONUS: Enable Automatic Uprades to the 'patch' channel and set a Planned Maintenance Window
+### BONUS: Enable Automatic Upgrades to the 'patch' channel and set a Planned Maintenance Window
 
 While the above process is actually pretty easy and could be automated through a ticketing system without much effort, for lower environments (dev/test) you may consider letting AKS manage the version upgrades for you. You can also specify the upgrade window.
 
