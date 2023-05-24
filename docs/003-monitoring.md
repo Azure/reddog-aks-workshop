@@ -27,4 +27,4 @@ You have 2 options for monitoring in this workshop:
 * [Enable monitoring for an existing AKS cluster](https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-existing-clusters?tabs=azure-cli)
 * [kube-prometheus github](https://github.com/prometheus-operator/kube-prometheus)
 * [kube-prometheus customizations](https://github.com/prometheus-operator/kube-prometheus/tree/main/docs/customizations)
-* [Configure distributed tracing with App Insights](https://docs.dapr.io/operations/monitoring/tracing/open-telemetry-collector-appinsights/)
+* [Configure distributed tracing with App Insights](https://docs.dapr.io/operations/monitoring/tracing/otel-collector/open-telemetry-collector-appinsights/)
