@@ -25,6 +25,9 @@ helm repo update
 # Look at the charts in the repo
 helm search repo bitnami
 
+# List versions of a chart
+elm search repo bitnami/wordpress --versions
+
 # Deploy mysql from the repo
 helm install bitnami/mysql --generate-name
 
