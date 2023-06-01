@@ -31,12 +31,15 @@ LOCATION=eastus
 
 # Core Quota Check
 ###################################
-COMPUTE_FAMILY="standardDSv2Family"
+COMPUTE_FAMILY="standardDSv4Family"
 
 CORE_QUOTA=$(az quota show --resource-name $COMPUTE_FAMILY --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/$LOCATION" -o tsv --query properties.limit.value)
 CORE_USAGE=$(az quota usage show --resource-name $COMPUTE_FAMILY --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/$LOCATION" -o tsv --query properties.usages.Value)
 
 echo $COMPUTE_FAMILY usage: $CORE_USAGE/$CORE_QUOTA
+
+## To request quota increase
+az quota create --resource-name "standardDSv2Family" --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/eastus" --limit-object value=20 limit-object-type=LimitValue --resource-type dedicated
 ###################################
 
 # Public IP Quota Check

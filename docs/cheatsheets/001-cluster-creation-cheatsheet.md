@@ -12,6 +12,7 @@ In cluster creation, you were given the following requirements:
 * The cluster should use the cluster and kubelet identities you've already created
 * The cluster should be configured to use 'Calico' Kubernetes Network Policy
 * The cluster should have both a 'System' and 'User' mode nodepool
+* The system pool should have 1 node and the user pool shoudl have 3 nodes
 * The initial pool created will be the system pool and should be called 'systempool'
 * The 'System' mode pool should be tainted to only allow system pods
 
@@ -76,6 +77,7 @@ az aks create \
 -n $CLUSTER_NAME \
 --nodepool-name systempool \
 --node-vm-size Standard_D2_v4 \
+--node-count 1 \
 --network-plugin kubenet \
 --network-policy calico \
 --vnet-subnet-id $VNET_SUBNET_ID \
@@ -86,6 +88,7 @@ az aks create \
 --enable-managed-identity \
 --assign-identity $CLUSTER_IDENTITY_ID \
 --assign-kubelet-identity $KUBELET_IDENTITY_ID \
+
 --generate-ssh-keys
 ```
 
