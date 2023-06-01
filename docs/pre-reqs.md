@@ -18,6 +18,10 @@ You need sufficient core and public IP quota for the workshop. You should assume
 ```bash
 SUBSCRIPTION=<Insert Subscription ID>
 
+# Basic providers
+az provider register --namespace Microsoft.Compute
+az provider register --namespace Microsoft.Network
+
 # Register the Quota provider
 az provider register --namespace Microsoft.Quota
 az provider show -n Microsoft.Quota
