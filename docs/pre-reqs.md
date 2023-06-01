@@ -16,6 +16,8 @@ You need sufficient core and public IP quota for the workshop. You should assume
 >**NOTE:** These quotas are per region. If, for some reason, you cannot get sufficient quota in a given region, you can split up attendees across regions.
 
 ```bash
+SUBSCRIPTION=<Insert Subscription ID>
+
 # Register the Quota provider
 az provider register --namespace Microsoft.Quota
 az provider show -n Microsoft.Quota
@@ -27,21 +29,17 @@ LOCATION=eastus
 ###################################
 COMPUTE_FAMILY="standardDSv2Family"
 
-CORE_QUOTA=$(az quota show --resource-name $COMPUTE_FAMILY --scope 
-"subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/$LOCATION" -o tsv --query properties.limit.value)
-CORE_USAGE=$(az quota usage show --resource-name $COMPUTE_FAMILY --scope 
-"subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/$LOCATION" -o tsv --query properties.usages.Value)
+CORE_QUOTA=$(az quota show --resource-name $COMPUTE_FAMILY --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/$LOCATION" -o tsv --query properties.limit.value)
+CORE_USAGE=$(az quota usage show --resource-name $COMPUTE_FAMILY --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Compute/locations/$LOCATION" -o tsv --query properties.usages.Value)
 
 echo $COMPUTE_FAMILY usage: $CORE_USAGE/$CORE_QUOTA
 ###################################
 
 # Public IP Quota Check
 ###################################
-PUBLIC_IP_QUOTA=$(az quota show --resource-name "StandardSkuPublicIpAddresses" --scope 
-"subscriptions/$SUBSCRIPTION/providers/Microsoft.Network/locations/$LOCATION" -o tsv --query properties.limit.value)
+PUBLIC_IP_QUOTA=$(az quota show --resource-name "StandardSkuPublicIpAddresses" --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Network/locations/$LOCATION" -o tsv --query properties.limit.value)
 
-PUBLIC_IP_USAGE=$(az quota usage show --resource-name "StandardSkuPublicIpAddresses" --scope 
-"subscriptions/$SUBSCRIPTION/providers/Microsoft.Network/locations/$LOCATION" -o tsv --query properties.usages.Value)
+PUBLIC_IP_USAGE=$(az quota usage show --resource-name "StandardSkuPublicIpAddresses" --scope "subscriptions/$SUBSCRIPTION/providers/Microsoft.Network/locations/$LOCATION" -o tsv --query properties.usages.Value)
 
 echo Public IPs: $PUBLIC_IP_USAGE/$PUBLIC_IP_QUOTA
 ###################################
