@@ -88,7 +88,6 @@ az aks create \
 --enable-managed-identity \
 --assign-identity $CLUSTER_IDENTITY_ID \
 --assign-kubelet-identity $KUBELET_IDENTITY_ID \
-
 --generate-ssh-keys
 ```
 
