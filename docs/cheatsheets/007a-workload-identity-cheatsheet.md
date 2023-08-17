@@ -193,7 +193,7 @@ COPY --from=build-env /App/out .
 ENTRYPOINT ["dotnet", "keyvault-console-app.dll"]
 ```
 
-Now we need to build the image. You can do this locally, but to be safe from any cpu architecture mismatches, lets use the Azure Container Registry to build. You should have an existing registry from the [Container Registry Lab](./container-registry-cheatsheet.md).
+Now we need to build the image. You can do this locally, but to be safe from any cpu architecture mismatches, lets use the Azure Container Registry to build. You should have an existing registry from the [Container Registry Lab](./005-container-registry-cheatsheet.md).
 
 ```bash
 ACR_NAME=[ACR NAME]
