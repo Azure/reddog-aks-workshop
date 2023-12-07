@@ -124,7 +124,7 @@ az network firewall application-rule create \
 -n 'fqdn' \
 --source-addresses '*' \
 --protocols 'http=80' 'https=443' \
---target-fqdns $TARGET_FQDNS[@] \
+--target-fqdns ${TARGET_FQDNS[@]} \
 --action allow --priority 101
 ```
 
