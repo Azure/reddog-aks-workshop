@@ -136,7 +136,7 @@ Now that the firewall is created, we can create an Azure Route Table which will 
 ```bash
 # First get the public and private IP of the firewall for the routing rules
 FWPUBLIC_IP=$(az network public-ip show -g $RG -n azfirewall-ip --query "ipAddress" -o tsv)
-FWPRIVATE_IP=$(az network firewall show -g $RG -n $FIREWALLNAME --query "ipConfigurations[0].privateIpAddress" -o tsv)
+FWPRIVATE_IP=$(az network firewall show -g $RG -n $FIREWALLNAME --query "ipConfigurations[0].privateIPAddress" -o tsv)
 
 # Create Route Table
 az network route-table create \
