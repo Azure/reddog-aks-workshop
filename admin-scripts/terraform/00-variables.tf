@@ -20,6 +20,6 @@ variable "location" {
 
 variable "password" {
   type = string
-  default = "SecretP@sswd99!"
+  default = ""
   sensitive = false
 }
