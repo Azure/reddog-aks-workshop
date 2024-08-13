@@ -9,10 +9,10 @@ SB_NAMESPACE="reddogsb$randomIdentifier"
 SQLSERVER="$randomIdentifier-azuresql-server"
 SQLDB="reddog"
 SQLLOGIN='azureuser'
-SQLPASSWORD='w@lkingth3d0g'
+SQLPASSWORD=''
 # Get your current IP
 MYIP=$(curl icanhazip.com)
-REDIS_PASSWD='w@lkingth3d0g'
+REDIS_PASSWD=''
 REDIS_SERVER='redis-release-master.redis.svc.cluster.local:6379'
 
 # Deploy Azure Service Bus
